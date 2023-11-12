@@ -50,6 +50,7 @@ $λ_ {coord}$ : coordinate loss balance constant
 $λ_{noobj}$ : no confidence loss balance constant  
 $Mask_{ig}$ : tensor that masks only the anchor with iou $\le$ 0.5. Have a shape of $\left[S, S, B\right]$.
 
+$o$(objectness)는 anchor와 bbox의 iou가 
 
 
 
