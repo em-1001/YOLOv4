@@ -42,6 +42,14 @@ $$+Mask_{ig} \cdot λ_{noobj} \sum_{i=0}^{S^2} \sum_{j=0}^B 𝟙^{noobj}_{i j} \
 
 $$+\sum_{i=0}^{S^2} \sum_{j=0}^B 𝟙^{obj}_{i j} \left[-(c_i\log(\hat{c_i}) + (1 - c_i)\log(1 - \hat{c_i}))\right]$$  
 
+$S$ : number of cells    
+$B$ : number of anchors  
+$o$ : objectness  
+$c$ : class label  
+$λ_ {coord}$ : coordinate loss balance constant  
+$λ_{noobj}$ : no confidence loss balance constant  
+$Mask_{ig}$ : tensor that masks only the anchor with iou $\le$ 0.5. Have a shape of [S, S, B].
+
 
 
 # Cross Entropy
