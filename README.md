@@ -1,4 +1,5 @@
 # YOLOv3
+## Bounding Box
 <p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/b7058b48-1120-409e-ae7c-1c5ab8b09159"></p>
 
 YOLOv2 부터 Anchor box(prior box)를 미리 설정하여 최종 bounding box 예측에 활용한다. 위 그림에서는 $b_x, b_y, b_w, b_h$가 최종적으로 예측하고자 하는 bounding box이다. 검은 점선은 사전에 설정된 Anchor box로 이 Anchor box를 조정하여 파란색의 bounding box를 예측하도록 한다.   
@@ -22,6 +23,55 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 
 결과적으로 $x, y, w, h$ loss는 ground truth인 $\hat{t}_ {∗}$ prediction value인 ${t}_ {∗}$사이의 차이 $\hat{t}_ {∗} - {t}_ {∗}$를 통한 Sum-Squared Error(SSE)로 구해진다. 
 
+## Model
+
+## Loss
+
+$$λ_ {coord} \sum_ {i=0}^{S^2} \sum_ {j=0}^B 𝟙^{obj}_ {i j} \left[(t_ {x_ i} - \hat{t_ {x_ i}})^2 + (t_ {y_ i} - \hat{t_ {y_ i}})^2 \right]$$
+
+$$+λ_ {coord} \sum_ {i=0}^{S^2} \sum_ {j=0}^B 𝟙^{obj}_ {i j} \left[(t_ {w_ i} - \hat{t_ {w_ i}})^2 + (t_ {h_ i} - \hat{t_ {h_ i}})^2 \right]$$
+
+$$+\sum_{i=0}^{S^2} \sum_{j=0}^B 𝟙^{obj}_{i j} \left[-(o_i\log(\hat{o_i}) + (1 - o_i)\log(1 - \hat{o_i}))\right]$$
+
+$$+Mask_{ig} \cdot λ_{noobj} \sum_{i=0}^{S^2} \sum_{j=0}^B 𝟙^{noobj}_{i j} \left[-(o_i\log(\hat{o_i}) + (1 - o_i)\log(1 - \hat{o_i}))\right]$$
+
+$$+\sum_{i=0}^{S^2} \sum_{j=0}^B 𝟙^{obj}_{i j} \left[-(c_i\log(\hat{c_i}) + (1 - c_i)\log(1 - \hat{c_i}))\right]$$  
+
+
+
+# Cross Entropy
+Cross Entropy 는 정보 이론에서 파생된 개념으로, 확률 분포의 차이를 측정하는 지표이다. 두 확률 분포 간의 유사성을 평가하거나, 분류 문제에서 예측값과 실제값 간의 차이를 계산하는 데 사용된다. 
+
+데이터 확률 분포를 $P(x)$, 모델이 추정하는 확률 분포를 $Q(x)$라고 할 때, 두 확률 분포 $P$와 $Q$의 차이를 측정하는 지표인 Cross Entropy는 아래와 같이 표현된다. 
+
+$$H(p, q) = H(p) + D_{KL}(p||q) = -\sum_{i=0}^{n} p(x_i)\log{(q(x_i))}$$
+
+일반적인 Classification 문제에서 주로 cross entropy loss를 사용한다. 이때 True distribution $P$는 one-hot 인코딩된 vector(Ground Truth)를 사용한다. Prediction distribution $Q$ 는 모델의 예측 값으로 softmax layer를 거친 후의 값이고, 클래스 별 확률 값을 모두 합치면 1이 된다. 
+
+예를 들어 $P = [0, 1, 0]$,  $Q = [0.2, 0.7, 0.1]$ 일 때, cross entropy loss 결과는 아래와 같다.
+
+$$
+\begin{aligned}
+H(P,Q)&=-\sum P(x)log Q(x)\\
+&=-(0 \cdot \log{0.2} + 1 \cdot \log{0.7} + 0 \cdot \log{0.1})\\
+&=-\log{0.7}
+\end{aligned}$$
+
+이진 분류 문제에서의 cross entropy는 다음과 같이 표현된다. 
+
+$$H(y, \hat{y}) = -\frac{1}{N} \sum_{i=1}^N (y_i \log{(\hat{y}_i)} + (1-y_i) \log{(1 - \hat{y}_i)})$$
+
+$y_i$는 실제 클래스를 나타내는 값(0 또는 1)이고, $\hat{y}_i$는 모델의 예측 확률을 나타낸다.   
+
+위 식은 다음과 같이 유도된다.
+1. 정보 이론적 관점  
+이진 분류 문제에서, 실제값 $y$가 1이라면 모델은 1로 예측해야 하며, cross entropy는 $-log(\hat{y})$가 되야한다.
+반대로 실제값 $y$가 0이라면 모델은 0으로 예측해야 하며, cross entropy는 $-log(1 - \hat{y})$가 된다.
+2. 평균화 및 합산  
+이러한 관점에서 전체 데이터셋에 대해 각각의 경우(실제값이 1 또는 0인 경우)의 교차 엔트로피를 합산하여 평균을 취한 것이 최종적인 이진 분류 문제의 교차 엔트로피 손실 함수의 식이 된다.
+
+
+위 식은 실제 분포(Ground Truth)인 $y_i$와 모델의 예측인 $\hat{y}_i$사이의 정보량을 측정하고 모델이 Ground Truth와 일치할수록, Cross Entropy의 값은 작아진다.  
 
 # GIoU, DIoU,  CIoU
 일반적으로 IoU-based loss는 다음과 같이 표현된다. 
@@ -73,9 +123,10 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 # Reference
 ## Web Link 
 One-stage object detection : https://machinethink.net/blog/object-detection/   
-DIOU, CIOU : https://hongl.tistory.com/215  
+DIoU, CIoU : https://hongl.tistory.com/215  
 
 
 ## Paper
 YOLOv2 : https://arxiv.org/pdf/1612.08242.pdf      
-YOLOv3 : https://arxiv.org/pdf/1804.02767.pdf   
+YOLOv3 : https://arxiv.org/pdf/1804.02767.pdf  
+DIoU, CIoU : https://arxiv.org/pdf/1911.08287.pdf
