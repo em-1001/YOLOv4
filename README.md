@@ -20,7 +20,7 @@ $w, h$는 아래와 같이 변형된다.
 
 $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 
-결과적으로 $x, y, w, h$ loss는 ground truth인 $\hat{t}_ {∗}$ prediction value인 ${t}_ {∗}$사이의 차이 $\hat{t}_ {∗} - {t}_ {∗}$를 통한 sum of squared error(SSE)로 구해진다. 
+결과적으로 $x, y, w, h$ loss는 ground truth인 $\hat{t}_ {∗}$ prediction value인 ${t}_ {∗}$사이의 차이 $\hat{t}_ {∗} - {t}_ {∗}$를 통한 Sum-Squared Error(SSE)로 구해진다. 
 
 
 # GIoU, DIoU,  CIoU
