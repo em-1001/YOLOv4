@@ -48,7 +48,9 @@ $o$ : objectness
 $c$ : class label  
 $λ_ {coord}$ : coordinate loss balance constant  
 $λ_{noobj}$ : no confidence loss balance constant  
-$Mask_{ig}$ : tensor that masks only the anchor with iou $\le$ 0.5. Have a shape of [S, S, B].
+$Mask_{ig}$ : tensor that masks only the anchor with iou $\le$ 0.5. Have a shape of $\left[S, S, B\right]$.
+
+
 
 
 
@@ -137,6 +139,8 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 ## Web Link 
 One-stage object detection : https://machinethink.net/blog/object-detection/   
 DIoU, CIoU : https://hongl.tistory.com/215  
+YOLOv3 : https://herbwood.tistory.com/21  
+&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11
 
 
 ## Paper
