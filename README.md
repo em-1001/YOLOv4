@@ -27,7 +27,7 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 ## Model
 <p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/c285e2fe-0ae5-4a62-8a9f-ef0824ab6575" height="30%" width="30%"></p>
 
-모델의 backbone은 Residual block과 Darknet을 통합한 Darknet-53이다. Residual block은 
+모델의 backbone은 $3 \times 3$, $1 \times 1$ Residual connection을 사용하면서 최종적으로 53개의 conv layer를 사용하는 **Darknet-53** 을 이용한다. Darknet-53의 Residual block안에서도 bottleneck 구조를 사용하며, input의 channel을 중간에 반으로 줄였다가 다시 복구시킨다.  
 
 
 ## Loss
@@ -109,7 +109,8 @@ DIoU, CIoU : https://hongl.tistory.com/215
 YOLOv3 : https://herbwood.tistory.com/21  
 &#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11  
 Residual block : https://daeun-computer-uneasy.tistory.com/28  
-　　　　&#160;&#160;　　　https://techblog-history-younghunjo1.tistory.com/279
+　　　　&#160;&#160;　　　https://techblog-history-younghunjo1.tistory.com/279  
+BottleNeck : https://velog.io/@lighthouse97/CNN%EC%9D%98-Bottleneck%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4  
 
 
 ## Paper
