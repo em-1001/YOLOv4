@@ -29,6 +29,7 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 결과적으로 $x, y, w, h$ loss는 ground truth인 $\hat{t}_ {∗}$ prediction value인 ${t}_ {∗}$사이의 차이 $\hat{t}_ {∗} - {t}_ {∗}$를 통한 Sum-Squared Error(SSE)로 구해진다. 
 
 ## Model
+<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/580c083b-db62-47bf-af15-95396efb576c" height="40%" width="40%"></p>
 
 ## Loss
 
