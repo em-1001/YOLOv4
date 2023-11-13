@@ -3,10 +3,6 @@
 <p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/b7058b48-1120-409e-ae7c-1c5ab8b09159">
 
 
-
-
-
-
 YOLOv2 부터 Anchor box(prior box)를 미리 설정하여 최종 bounding box 예측에 활용한다. 위 그림에서는 $b_x, b_y, b_w, b_h$가 최종적으로 예측하고자 하는 bounding box이다. 검은 점선은 사전에 설정된 Anchor box로 이 Anchor box를 조정하여 파란색의 bounding box를 예측하도록 한다.   
 
 모델은 직접적으로 $b_x, b_y, b_w, b_h$를 예측하지 않고 $t_x, t_y, t_w, t_h$를 예측하게 된다. 
@@ -29,7 +25,10 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 결과적으로 $x, y, w, h$ loss는 ground truth인 $\hat{t}_ {∗}$ prediction value인 ${t}_ {∗}$사이의 차이 $\hat{t}_ {∗} - {t}_ {∗}$를 통한 Sum-Squared Error(SSE)로 구해진다. 
 
 ## Model
-<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/580c083b-db62-47bf-af15-95396efb576c" height="40%" width="40%"></p>
+<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/c285e2fe-0ae5-4a62-8a9f-ef0824ab6575" height="30%" width="30%"></p>
+
+모델의 backbone은 Residual block과 Darknet을 통합한 Darknet-53이다. Residual block은 
+
 
 ## Loss
 
@@ -108,7 +107,9 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 One-stage object detection : https://machinethink.net/blog/object-detection/   
 DIoU, CIoU : https://hongl.tistory.com/215  
 YOLOv3 : https://herbwood.tistory.com/21  
-&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11
+&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11  
+Residual block : https://daeun-computer-uneasy.tistory.com/28  
+　　　　&#160;&#160;　　　https://techblog-history-younghunjo1.tistory.com/279
 
 
 ## Paper
