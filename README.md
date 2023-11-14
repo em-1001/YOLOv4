@@ -29,7 +29,7 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 
 모델의 backbone은 $3 \times 3$, $1 \times 1$ Residual connection을 사용하면서 최종적으로 53개의 conv layer를 사용하는 **Darknet-53** 을 이용한다. Darknet-53의 Residual block안에서도 bottleneck 구조를 사용하며, input의 channel을 중간에 반으로 줄였다가 다시 복구시킨다. 이때 Residual block의 $1 \times 1$ conv는 $s=1, p=0$ 이고, $3 \times 3$ conv는 $s=1, p=1$이다. 
 
-YOLOv3 model의 특징은 물체의 scale을 고려하여 3가지 크기의 output이 나오도록 FPN과 유사하게 설계하였다는 것이다. 우선 feature extractor에서 각 scale을 위한 tensor를 뽑아낸다. 그리고 각 scale별로 뽑아낸 tensor에 대해 FPN과 유사하게 conv를 거쳐 각 scale에 해당하는 최종 tensor를 만들어낸다. 각 scale에 따라 나오는 최종 tensor의 형태는 $N \times N \times \left[3 \cdot (4+1+80)\right]$이고, 여기서 $4$는 bounding box offset $(x, y, w, h)$, $1$은 objectness prediction, $80$은 class의 수 이다. 이렇게 각 크기별로 feature map을 구하고 2 layer 후에 $2\times$로 upsampling을 진행한다. 이렇게 upsample된 tensor는 현재보다 한 단계 작은 scale의 feature map을 구하는 network 초반부에 feature extractor에서 뽑은 tensor와 concatenation을 통해 merge되는데, 이는 더욱 meaningful한 semantic information을 얻게 해준다. 
+YOLOv3 model의 특징은 물체의 scale을 고려하여 3가지 크기의 output이 나오도록 FPN과 유사하게 설계하였다는 것이다. 우선 feature extractor에서 각 scale을 위한 tensor를 뽑아낸다. 그리고 각 scale별로 뽑아낸 tensor에 대해 FPN과 유사하게 conv를 거쳐 각 scale에 해당하는 최종 tensor를 만들어낸다. 이에 따라 각 scale별로 3개의 box를 예측하고 각 scale에 따라 나오는 최종 tensor의 형태는 $N \times N \times \left[3 \cdot (4+1+80)\right]$이다. 여기서 $4$는 bounding box offset $(x, y, w, h)$, $1$은 objectness prediction, $80$은 class의 수 이다. 이렇게 각 크기별로 feature map을 구하고 2 layer 후에 $2\times$로 upsampling을 진행한다. 이렇게 upsample된 tensor는 현재보다 한 단계 작은 scale의 feature map을 구하는 network 초반부에 feature extractor에서 뽑은 tensor와 concatenation을 통해 merge되는데, 이는 더욱 meaningful한 semantic information을 얻게 해준다. 
 
 
 ## Loss
