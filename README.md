@@ -54,7 +54,7 @@ $𝟙^{obj}_ {i j}$ : 1 when there is object, 0 when there is no object
 $𝟙^{noobj}_ {i j}$ : 1 when there is no object, 0 when there is object  
 $Mask_{ig}$ : tensor that masks only the anchor with iou $\le$ 0.5. Have a shape of $\left[S, S, B\right]$.
 
-$o$ (objectness)는 anchor와 bbox의 iou가 가장 큰 anchor의 값이 1, 그렇지 않은 경우의 값이 0인 $\left[13, 13, 3, 1\right]$의 tensor로 만들어진다. $c$ (class label)은 one-encoding으로 $\left[13, 13, 3, n \right]$ ($n$ : num_classes) 의 shape를 갖는 tensor로 만들어진다. 
+$o$ (objectness)는 anchor와 bbox의 iou가 가장 큰 anchor의 값이 1, 그렇지 않은 경우의 값이 0인 $\left[N, N, 3, 1\right]$의 tensor로 만들어진다. $c$ (class label)은 one-encoding으로 $\left[N, N, 3, n \right]$ ($n$ : num_classes) 의 shape를 갖는 tensor로 만들어진다. 
 
 
 # GIoU, DIoU,  CIoU
