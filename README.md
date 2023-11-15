@@ -25,11 +25,17 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 결과적으로 $x, y, w, h$ loss는 ground truth인 $\hat{t}_ {∗}$ prediction value인 ${t}_ {∗}$사이의 차이 $\hat{t}_ {∗} - {t}_ {∗}$를 통한 Sum-Squared Error(SSE)로 구해진다. 
 
 ## Model
-<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/c285e2fe-0ae5-4a62-8a9f-ef0824ab6575" height="35%" width="35%"></p>
+<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/c285e2fe-0ae5-4a62-8a9f-ef0824ab6575" height="35%" width="35%"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/9eca7e7d-ec70-4c87-bf1a-1f07cd3d1339" height="65%" width="65%"></p>
+
 
 모델의 backbone은 $3 \times 3$, $1 \times 1$ Residual connection을 사용하면서 최종적으로 53개의 conv layer를 사용하는 **Darknet-53** 을 이용한다. Darknet-53의 Residual block안에서도 bottleneck 구조를 사용하며, input의 channel을 중간에 반으로 줄였다가 다시 복구시킨다. 이때 Residual block의 $1 \times 1$ conv는 $s=1, p=0$ 이고, $3 \times 3$ conv는 $s=1, p=1$이다. 
 
-YOLOv3 model의 특징은 물체의 scale을 고려하여 3가지 크기의 output이 나오도록 FPN과 유사하게 설계하였다는 것이다. 우선 feature extractor에서 각 scale을 위한 tensor를 뽑아낸다. 그리고 각 scale별로 뽑아낸 tensor에 대해 FPN과 유사하게 conv를 거쳐 각 scale에 해당하는 최종 tensor를 만들어낸다. 모델은 각 scale별로 3개의 box를 예측하고 각 scale에 따라 나오는 최종 tensor의 형태는 $N \times N \times \left[3 \cdot (4+1+80)\right]$이다. 여기서 $4$는 bounding box offset $(x, y, w, h)$, $1$은 objectness prediction, $80$은 class의 수 이다. 이렇게 각 크기별로 feature map을 구하고 2 layer 후에 $2\times$로 upsampling을 진행한다. 이렇게 upsample된 tensor는 현재보다 한 단계 작은 scale의 feature map을 구하는 network 초반부에 feature extractor에서 뽑은 tensor와 concatenation을 통해 merge되는데, 이는 더욱 meaningful한 semantic information을 얻게 해준다. 
+YOLOv3 model의 특징은 물체의 scale을 고려하여 3가지 크기의 output이 나오도록 FPN과 유사하게 설계하였다는 것이다. 오른쪽 그림과 같이 $416 \times 416$의 크기를 feature extractor로 받았다고 하면, feature map이 크기가 $52 \times 52$, $26 \times 26$, $13 \times 13$이 되는 layer에서 각각 feature map을 추출한다. 
+
+![image](https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/67a60d6e-99ab-4a72-a297-2924daa54795)
+
+그 다음 가장 높은 level, 즉 해상도가 가장 낮은 feature map부터 $1 \times 1$, $3 \times 3$ conv layer로 구성된 작은 Fully Convolutional Network(FCN)에 입력한다. 이후 이 FCN의 output channel이 512가 되는 시점에서 feature map을 추출한 뒤, $2\times$로 upsampling을 진행한다. 이후 바로 아래 level에 있는 feature map과 concatenate를 해주고, 이렇게 만들어진 merged feature map을 다시 FCN에 입력한다. 이 과정을 다음 level에도 똑같이 적용해주고 이렇게 3개의 scale을 가진 feature map이 만들어진다. 각 scale에 따라 나오는 최종 feature map의 형태는 $N \times N \times \left[3 \cdot (4+1+80)\right]$이다. 여기서 $3$은 grid cell당 predict하는 anchor box의 수를, $4$는 bounding box offset $(x, y, w, h)$, $1$은 objectness prediction, $80$은 class의 수 이다. 따라서 최종적으로 얻는 feature map은 $\left[52 \times 52 \times 255\right], \left[26 \times 26 \times 255\right], \left[13 \times 13 \times 255\right]$이다. 
+
 
 
 ## Loss
@@ -109,8 +115,8 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 One-stage object detection : https://machinethink.net/blog/object-detection/   
 DIoU, CIoU : https://hongl.tistory.com/215  
 YOLOv3 : https://herbwood.tistory.com/21  
-&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11    
-&#160;&#160;&#160;&#160;&#160;　　　 https://www.youtube.com/watch?v=jqykPH3jbic  
+&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11     
+&#160;&#160;&#160;&#160;&#160;　　　 https://towardsdatascience.com/dive-really-deep-into-yolo-v3-a-beginners-guide-9e3d2666280e  
 Residual block : https://daeun-computer-uneasy.tistory.com/28  
 　　　　&#160;&#160;　　　https://techblog-history-younghunjo1.tistory.com/279  
 BottleNeck : https://velog.io/@lighthouse97/CNN%EC%9D%98-Bottleneck%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4  
