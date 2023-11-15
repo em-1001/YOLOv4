@@ -115,7 +115,8 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 One-stage object detection : https://machinethink.net/blog/object-detection/   
 DIoU, CIoU : https://hongl.tistory.com/215  
 YOLOv3 : https://herbwood.tistory.com/21  
-&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11     
+&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11   
+&#160;&#160;&#160;&#160;&#160;　　　 https://herbwood.tistory.com/21  
 &#160;&#160;&#160;&#160;&#160;　　　 https://towardsdatascience.com/dive-really-deep-into-yolo-v3-a-beginners-guide-9e3d2666280e  
 Residual block : https://daeun-computer-uneasy.tistory.com/28  
 　　　　&#160;&#160;　　　https://techblog-history-younghunjo1.tistory.com/279  
