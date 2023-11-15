@@ -62,6 +62,8 @@ $𝟙^{obj}_ {i j}$ : 1 when there is object, 0 when there is no object
 $𝟙^{noobj}_ {i j}$ : 1 when there is no object, 0 when there is object  
 $Mask_{ig}$ : tensor that masks only the anchor with iou $\le$ 0.5. Have a shape of $\left[S, S, B\right]$.
 
+각각의 box는 multi-label classification을 하게 되는데 논문에서는 softmax가 성능이 좋지 못하기 때문에, binary cross-entropy loss를 사용했다고 한다. 하나의 box안에 복수의 객체가 존재하는 경우 softmax는 적절하게 객체를 알아내지 못하기 때문에, box 안에 각 class가 존재하는 여부를 확인하는 binary cross-entropy가 보다 적절하다고 할 수 있다.   
+
 $o$ (objectness)는 anchor와 bbox의 iou가 가장 큰 anchor의 값이 1, 그렇지 않은 경우의 값이 0인 $\left[N, N, 3, 1\right]$의 tensor로 만들어진다. $c$ (class label)은 one-encoding으로 $\left[N, N, 3, n \right]$ ($n$ : num_classes) 의 shape를 갖는 tensor로 만들어진다. 
 
 
