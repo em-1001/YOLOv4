@@ -94,6 +94,20 @@ $\rho^2$는 Euclidean거리이며 $c$는 $B$와 $B^{gt}$를 포함하는 가장 
 
 DIoU Loss는 두 개의 box가 완벽히 일치하면 0, 매우 멀어지면 $L_{GIoU} = L_{DIoU} \mapsto 2$가 된다. 이는 IoU가 0이 되고, penalty term이 1에 가깝게 되기 때문이다. Distance-IoU는 두 box의 중심 거리를 직접적으로 줄이기 때문에 GIoU에 비해 수렴이 빠르고, 거리기반이므로 수평, 수직방향에서 또한 수렴이 빠르다. 
 
+### DIoU-NMS
+DIoU를 NMS(Non-Maximum Suppression)에도 적용할 수 있다. 일반적인 NMS의 경우 이미지에서 같은 class인 두 물체가 겹쳐있는 Occlusion(가림)이 발생한 경우 올바른 박스가 삭제되는 문제가 발생하는데, DIoU를 접목할 경우 두 박스의 중심점 거리도 고려하기 때문에 target box끼리 겹쳐진 경우에도 robust하게 동작할 수 있다. 
+
+$$
+s_i =
+\begin{cases}
+s_ i, & IoU - \mathcal{R}_ {DIoU}(\mathcal{M}, B_i) < \epsilon\\
+0, & IoU - \mathcal{R}_{DIoU}(\mathcal{M}, B_i) \ge \epsilon
+\end{cases}
+$$
+
+가장 높은 Confidence score를 갖는 $\mathcal{M}$에 대해 IoU와 DIoU의 distance penalty를 동시에 고려하여 IoU가 매우 크더라도 중심점 사이의 거리가 멀면 다른 객체를 탐지한 것일 수도 있으므로 위와 같이 일정 임계치 $\epsilon$ 보다 작으면 없애지 않고 보존한다. 
+
+
 ## Complete-IoU(CIoU)
 DIoU, CIoU를 제안한 논문에서 말하는 성공적인 Bounding Box Regression을 위한 3가지 조건은 overlap area, central point
 distance, aspect ratio이다. 이 중 overlap area, central point는 DIoU에서 이미 고려했고 여기에 aspect ratio를 고려한 penalty term을 추가한 것이 CIoU이다. CIoU penalty term는 다음과 같이 정의된다. 
