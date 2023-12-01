@@ -25,7 +25,8 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 결과적으로 $x, y, w, h$ loss는 ground truth인 $\hat{t}_ {∗}$ prediction value인 ${t}_ {∗}$사이의 차이 $\hat{t}_ {∗} - {t}_ {∗}$를 통한 Sum-Squared Error(SSE)로 구해진다. 
 
 ## Model
-<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/c285e2fe-0ae5-4a62-8a9f-ef0824ab6575" height="35%" width="35%"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/9eca7e7d-ec70-4c87-bf1a-1f07cd3d1339" height="65%" width="65%"></p>
+
+<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/269aff90-e969-4cdc-811c-8da6425785a1" height="35%" width="35%"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/9eca7e7d-ec70-4c87-bf1a-1f07cd3d1339" height="65%" width="65%"></p>
 
 
 모델의 backbone은 $3 \times 3$, $1 \times 1$ Residual connection을 사용하면서 최종적으로 53개의 conv layer를 사용하는 **Darknet-53** 을 이용한다. Darknet-53의 Residual block안에서도 bottleneck 구조를 사용하며, input의 channel을 중간에 반으로 줄였다가 다시 복구시킨다. 이때 Residual block의 $1 \times 1$ conv는 $s=1, p=0$ 이고, $3 \times 3$ conv는 $s=1, p=1$이다. 
