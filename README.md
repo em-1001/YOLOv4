@@ -2,7 +2,7 @@
 
 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> 
 
-### mAP based on 100epoch
+### mAP @ 50 IoU based on 100epoch
 
 |MSE|IoU|GIoU|DIoU|CIoU|
 |--|--|--|--|--|
