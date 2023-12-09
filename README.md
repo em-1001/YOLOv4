@@ -1,6 +1,6 @@
 # YOLOv3
-![image](https://github.com/em-1001/YOLOv3/assets/80628552/2b372997-2bf2-4e68-b181-749d83bdd2d4)
-![image](https://github.com/em-1001/YOLOv3/assets/80628552/185acfeb-6a2e-4da7-babd-c9798614b0d1)
+<img src="https://github.com/em-1001/YOLOv3/assets/80628552/2b372997-2bf2-4e68-b181-749d83bdd2d4"> <img src="https://github.com/em-1001/YOLOv3/assets/80628552/185acfeb-6a2e-4da7-babd-c9798614b0d1">
+
 
 
 ## Bounding Box
