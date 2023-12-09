@@ -2,7 +2,11 @@
 
 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> 
 
+### mAP based on 100epoch
 
+|MSE|IoU|GIoU|DIoU|CIoU|
+|--|--|--|--|--|
+|25|45|34|23|34|
 
 ## Bounding Box
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/bbox.png">
