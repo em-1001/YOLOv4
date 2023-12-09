@@ -6,7 +6,7 @@
 
 |mAP|MSE|IoU|GIoU|DIoU|CIoU|
 |--|--|--|--|--|--|
-|mAP50|76|25|45|34|23|34|
+|**mAP 50**|76|25|45|34|23|34|
 
 ## Bounding Box
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/bbox.png">
