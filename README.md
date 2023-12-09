@@ -2,11 +2,11 @@
 
 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> 
 
-### mAP @ 50 IoU based on 100epoch
+### mAP according to different Box Losses (100epoch)
 
 |mAP|MSE|IoU|GIoU|DIoU|CIoU|
 |--|--|--|--|--|--|
-|**mAP 50**|76|25|45|34|23|34|
+|**mAP@50**|76|25|45|34|23|34|
 
 ## Bounding Box
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/bbox.png">
