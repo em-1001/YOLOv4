@@ -5,7 +5,7 @@
 
 
 ## Bounding Box
-<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/b7058b48-1120-409e-ae7c-1c5ab8b09159">
+<p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/bbox.png">
 
 
 YOLOv2 부터 Anchor box(prior box)를 미리 설정하여 최종 bounding box 예측에 활용한다. 위 그림에서는 $b_x, b_y, b_w, b_h$가 최종적으로 예측하고자 하는 bounding box이다. 검은 점선은 사전에 설정된 Anchor box로 이 Anchor box를 조정하여 파란색의 bounding box를 예측하도록 한다.   
@@ -31,14 +31,14 @@ $$\hat{t}_ {∗} = \ln\left(\frac{b_{∗}}{p_{∗}}\right)$$
 
 ## Model
 
-<p align="center"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/269aff90-e969-4cdc-811c-8da6425785a1" height="35%" width="35%"><img src="https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/9eca7e7d-ec70-4c87-bf1a-1f07cd3d1339" height="65%" width="65%"></p>
+<p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/darknet53.png" height="35%" width="35%"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/model1.png" height="65%" width="65%"></p>
 
 
 모델의 backbone은 $3 \times 3$, $1 \times 1$ Residual connection을 사용하면서 최종적으로 53개의 conv layer를 사용하는 **Darknet-53** 을 이용한다. Darknet-53의 Residual block안에서도 bottleneck 구조를 사용하며, input의 channel을 중간에 반으로 줄였다가 다시 복구시킨다. 이때 Residual block의 $1 \times 1$ conv는 $s=1, p=0$ 이고, $3 \times 3$ conv는 $s=1, p=1$이다. 
 
 YOLOv3 model의 특징은 물체의 scale을 고려하여 3가지 크기의 output이 나오도록 FPN과 유사하게 설계하였다는 것이다. 오른쪽 그림과 같이 $416 \times 416$의 크기를 feature extractor로 받았다고 하면, feature map이 크기가 $52 \times 52$, $26 \times 26$, $13 \times 13$이 되는 layer에서 각각 feature map을 추출한다. 
 
-![image](https://github.com/em-1001/YOLOv3-CIoU/assets/80628552/67a60d6e-99ab-4a72-a297-2924daa54795)
+<img src="https://github.com/em-1001/YOLOv3/blob/master/image/model2.png"> 
 
 그 다음 가장 높은 level, 즉 해상도가 가장 낮은 feature map부터 $1 \times 1$, $3 \times 3$ conv layer로 구성된 작은 Fully Convolutional Network(FCN)에 입력한다. 이후 이 FCN의 output channel이 512가 되는 시점에서 feature map을 추출한 뒤, $2\times$로 upsampling을 진행한다. 이후 바로 아래 level에 있는 feature map과 concatenate를 해주고, 이렇게 만들어진 merged feature map을 다시 FCN에 입력한다. 이 과정을 다음 level에도 똑같이 적용해주고 이렇게 3개의 scale을 가진 feature map이 만들어진다. 각 scale에 따라 나오는 최종 feature map의 형태는 $N \times N \times \left[3 \cdot (4+1+80)\right]$이다. 여기서 $3$은 grid cell당 predict하는 anchor box의 수를, $4$는 bounding box offset $(x, y, w, h)$, $1$은 objectness prediction, $80$은 class의 수 이다. 따라서 최종적으로 얻는 feature map은 $\left[52 \times 52 \times 255\right], \left[26 \times 26 \times 255\right], \left[13 \times 13 \times 255\right]$이다. 
 
@@ -96,7 +96,7 @@ $$\mathcal{R}_{DIoU} = \frac{\rho^2(b, b^{gt})}{c^2}$$
 
 $\rho^2$는 Euclidean거리이며 $c$는 $B$와 $B^{gt}$를 포함하는 가장 작은 Box의 대각선 거리이다. 
 
-<p align="center"><img src="https://github.com/em-1001/AI/assets/80628552/4abe5f78-388b-459f-a3f4-95e41a5fdb0a" height="25%" width="25%"></p>
+<p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/diou.png" height="25%" width="25%"></p>
 
 DIoU Loss는 두 개의 box가 완벽히 일치하면 0, 매우 멀어지면 $L_{GIoU} = L_{DIoU} \to 2$가 된다. 이는 IoU가 0이 되고, penalty term이 1에 가깝게 되기 때문이다. Distance-IoU는 두 box의 중심 거리를 직접적으로 줄이기 때문에 GIoU에 비해 수렴이 빠르고, 거리기반이므로 수평, 수직방향에서 또한 수렴이 빠르다. 
 
