@@ -6,9 +6,9 @@
 
 |mAP|MSE|IoU|GIoU|DIoU|CIoU|
 |--|--|--|--|--|--|
-|**mAP@50**|76|25|45|34|23|34|
+|**mAP@50**|17.|25|45|34|23|34|
 
-The model was evaluated with confidence 0.6 and IOU threshold 0.4 using NMS.
+The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
 ## Bounding Box
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/bbox.png">
