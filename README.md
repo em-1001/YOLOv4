@@ -9,7 +9,9 @@
 |--|--|--|--|--|--|
 |**mAP@50**|17.5|25|45|34|23|34|
 
-confidence 몇으로 할지 다시생각
+confidence 몇으로 할지 다시생각  
+model을 직접 다시 구현?  
+
 The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
 ## Bounding Box
