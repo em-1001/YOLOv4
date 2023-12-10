@@ -6,7 +6,7 @@
 
 |mAP|MSE|IoU|GIoU|DIoU|CIoU|
 |--|--|--|--|--|--|
-|**mAP@50**|17.|25|45|34|23|34|
+|**mAP@50**|17.5|25|45|34|23|34|
 
 The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
