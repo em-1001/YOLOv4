@@ -4,6 +4,7 @@
 
 ### mAP according to different Box Losses (pascal voc 100epoch)
 
+#### DIoU-NMS
 |mAP|MSE|IoU|GIoU|DIoU|CIoU|
 |--|--|--|--|--|--|
 |**mAP@50**|17.5|25|45|34|23|34|
