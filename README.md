@@ -56,7 +56,7 @@ YOLOv3 model의 특징은 물체의 scale을 고려하여 3가지 크기의 outp
 
 
 
-## Loss
+## Loss Function
 
 $$λ_ {coord} \sum_ {i=0}^{S^2} \sum_ {j=0}^B 𝟙^{obj}_ {i j} \left[(t_ {x_ i} - \hat{t_ {x_ i}})^2 + (t_ {y_ i} - \hat{t_ {y_ i}})^2 \right]$$
 
