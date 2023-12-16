@@ -1,6 +1,6 @@
 # YOLOv3
 
-<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" width="40%" height="40%"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" width="40%" height="40%"> 
+<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" width="45%" height="45%"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" width="45%" height="45%"> 
 
 ### mAP according to different Box Losses (pascal voc 100epoch)
 
