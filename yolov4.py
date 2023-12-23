@@ -48,28 +48,26 @@ class CSPResBlock(nn.Module):
         super().__init__()
 
         self.split1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels//2, kernel_size=1)
-        self.res1x1 = DarknetConv2D(in_channels=(in_channels//2)*(num_repeats+1), out_channels=in_channels//2, kernel_size=1)
+        self.res1x1 = DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=1)
         self.concat1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
-        self.DenseBlock = nn.ModuleList()
+        self.num_repeats = num_repeats
 
+        self.DenseBlock = nn.ModuleList()
         for i in range(num_repeats):
             DenseLayer = nn.ModuleList()
-            DenseLayer.append(DarknetConv2D(in_channels=(in_channels//2)*(i+1), out_channels=in_channels//2, kernel_size=1))
+            DenseLayer.append(DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=1))
             DenseLayer.append(DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=3))
             self.DenseBlock.append(DenseLayer)
 
-
-        self.num_repeats = num_repeats
-
     def forward(self, x):
         route = self.split1x1(x)
-        x = self.split1x1(x)
+        x = route
 
         for module in self.DenseBlock:
             h = x
             for res in module:
                 h = res(h)
-            x = torch.cat([x, h], dim=1) 
+            x = x + h
 
         x = self.res1x1(x)
         x = torch.cat([x, route], dim=1)
