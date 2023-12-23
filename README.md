@@ -74,6 +74,19 @@ $o$ (objectness)는 anchor와 bbox의 iou가 가장 큰 anchor의 값이 1, 그�
 ## Model
 <p align="center"><img src="https://github.com/em-1001/CSPDarknet53-SPP/blob/master/image/CSPDarknet53.png" height="55%" width="55%"></p>
 
+전체적인 구조는 YOLOv3과 유사하지만 YOLOv4는 **CSPDarknet53+SPP**를 사용한다. CSPDarknet53은 Darknet53에 CSPNet을 적용한 것이다. CSPNet은 위 사진의 CSP Residual 부분과 같이 base layer의 feature map을 두 개로 나눈 뒤($X_0 \to X_0^{'}, X_0^{''}$) $X_0^{''}$는 Dense Layer에 통과 시키고 $X_0^{'}$는 그대로 가져와서 마지막에 Dense Layer의 출력값인 ($X_0^{''}, x_1, x_2, ...$)을 transition layer에 통과시킨 $X_T$와 concat시킨다. 이후 concat된 결과가 다음 transition layer를 통과하면서 $X_U$가 생성된다.
+
+$$
+\begin{aligned}
+X_K &= W_K^{*}[\\
+g(x)&=Ax^4
+\end{aligned}$$
+
+
+
+
+
+
 ## Box Loss
 일반적으로 IoU-based loss는 다음과 같이 표현된다. 
 
