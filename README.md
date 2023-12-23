@@ -91,7 +91,7 @@ W_T^{'} &= f(W_T, g_0^{''}, g_1, g_2, ..., g_{k})\\
 W_U^{'} &= f(W_U, g_0^{'}, g_T)\\      
 \end{aligned}$$
 
-이렇게 하므로써 CSPDenseNet은 DenseNet의 feature reuse 특성을 활용하면서, gradient flow를 truncate(feature map을 두 개로 나눔)하여 과도한 양의 gradient information 복사를 방지할 수 있다. 
+이렇게 하므로써 CSPDenseNet은 DenseNet의 feature reuse 특성을 활용하면서, gradient flow를 truncate($X_0 \to X_0^{'}, X_0^{''}$)하여 과도한 양의 gradient information 복사를 방지할 수 있다. 
 
 
 ## Box Loss
