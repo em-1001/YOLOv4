@@ -71,7 +71,7 @@ $o$ (objectness)는 anchor와 bbox의 iou가 가장 큰 anchor의 값이 1, 그�
 
 
 # YOLOv4
-## CSPDarknet53
+## Model
 <p align="center"><img src="https://github.com/em-1001/CSPDarknet53-SPP/blob/master/image/CSPDarknet53.png" height="60%" width="60%"></p>
 
 ## Box Loss
