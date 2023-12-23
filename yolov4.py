@@ -44,40 +44,38 @@ class DarknetConv2D(nn.Module):
 
 
 class CSPResBlock(nn.Module):
-    def __init__(self, in_channels, use_residual=True, num_repeats=1):
+    def __init__(self, in_channels, num_repeats=1):
         super().__init__()
 
         self.split1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels//2, kernel_size=1)
-        self.res1x1 = DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=1)
+        self.res1x1 = DarknetConv2D(in_channels=(in_channels//2)*(num_repeats+1), out_channels=in_channels//2, kernel_size=1)
         self.concat1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
+        self.DenseBlock = nn.ModuleList()
 
-        res_layers = []
-        for _ in range(num_repeats):
-            res_layers += [
-                nn.Sequential(
-                    DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=1),
-                    DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=3)
-                )
-            ]
+        for i in range(num_repeats):
+            DenseLayer = nn.ModuleList()
+            DenseLayer.append(DarknetConv2D(in_channels=(in_channels//2)*(i+1), out_channels=in_channels//2, kernel_size=1))
+            DenseLayer.append(DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=3))
+            self.DenseBlock.append(DenseLayer)
 
 
-        self.layers = nn.ModuleList(res_layers)
         self.num_repeats = num_repeats
-        self.use_residual = use_residual
 
     def forward(self, x):
-        if self.use_residual:
-            route = self.split1x1(x)
-            x = self.split1x1(x)
+        route = self.split1x1(x)
+        x = self.split1x1(x)
 
-            for layer in self.layers:
-                x = layer(x)
+        for module in self.DenseBlock:
+            h = x
+            for res in module:
+                h = res(h)
+            x = torch.cat([x, h], dim=1) 
 
-            x = self.res1x1(x)
-            x = torch.cat([x, route], dim=1)
-            x = self.concat1x1(x)
+        x = self.res1x1(x)
+        x = torch.cat([x, route], dim=1)
+        x = self.concat1x1(x)
 
-            return x
+        return x
 
 
 
