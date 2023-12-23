@@ -1,5 +1,3 @@
-# YOLOv3
-
 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png">
 
 ### mAP according to different Box Losses (pascal voc 100epoch)
@@ -14,6 +12,7 @@ model을 직접 다시 구현?
 
 The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
+# YOLOv3
 ## Bounding Box
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/bbox.png">
 
