@@ -1,17 +1,4 @@
-# Performance(YOLOv3 vs YOLOv4)
-<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png">
 
-### mAP according to different Box Losses (pascal voc 100epoch)
-
-#### DIoU-NMS
-|mAP|MSE|IoU|GIoU|DIoU|CIoU|
-|--|--|--|--|--|--|
-|**mAP@50**|17.5|25|45|34|23|34|
-
-confidence 몇으로 할지 다시생각  
-model을 직접 다시 구현?  
-
-The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
 # YOLOv3
 ## Bounding Box
@@ -145,6 +132,22 @@ CIoU에 대해 최적화를 수행하면 아래와 같은 기울기를 얻게 �
 $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{h}{w^2 + h^2}$$ 
 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
+
+
+# Performance
+<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png">
+
+### mAP according to different Box Losses (pascal voc 100epoch)
+
+#### DIoU-NMS
+|mAP|MSE|IoU|GIoU|DIoU|CIoU|
+|--|--|--|--|--|--|
+|**mAP@50**|17.5|25|45|34|23|34|
+
+confidence 몇으로 할지 다시생각  
+model을 직접 다시 구현?  
+
+The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
 # Reference
 ## Web Link 
