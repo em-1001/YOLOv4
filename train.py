@@ -3,7 +3,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 
-from model import YOLOv3
+from yolov3 import YOLOv3
 from dataset import YOLODataset
 from tqdm import tqdm
 from utils import (
