@@ -71,6 +71,7 @@ $o$ (objectness)는 anchor와 bbox의 iou가 가장 큰 anchor의 값이 1, 그�
 
 
 # YOLOv4
+## CSPDarknet53
 
 ## Box Loss
 일반적으로 IoU-based loss는 다음과 같이 표현된다. 
