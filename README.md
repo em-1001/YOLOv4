@@ -78,11 +78,18 @@ $o$ (objectness)는 anchor와 bbox의 iou가 가장 큰 anchor의 값이 1, 그�
 
 $$
 \begin{aligned}
-X_K &= W_K^{*}[\\
-g(x)&=Ax^4
+X_k &= W_K^{ * }[X_0^{''}, X_1, ..., X_{k-1}]\\  
+X_T &= W_T^{ * }[X_0^{''}, X_1, ..., X_{k}]\\    
+X_U &= W_U^{ * }[X_0^{'}, X_T]\\      
+\end{aligned}$$  
+</br>
+
+$$
+\begin{aligned}
+W_k^{'} &= f(W_k, g_0^{''}, g_1, g_2, ..., g_{k-1})\\  
+W_T^{'} &= f(W_T, g_0^{''}, g_1, g_2, ..., g_{k})\\  
+W_U^{'} &= f(W_U, g_0^{'}, g_T)\\      
 \end{aligned}$$
-
-
 
 
 
