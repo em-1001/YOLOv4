@@ -1,4 +1,4 @@
-# reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/loss.py
+
 
 import random
 import torch
@@ -8,6 +8,9 @@ from utils import intersection_over_union
 
 
 class YoloLoss(nn.Module):
+
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/loss.py"""
+    
     def __init__(self):
         super().__init__()
         self.mse = nn.MSELoss()
