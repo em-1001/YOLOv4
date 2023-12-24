@@ -1,3 +1,5 @@
+# reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/config.py  
+
 import albumentations as A
 import cv2
 import torch
