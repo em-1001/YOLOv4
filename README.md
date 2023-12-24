@@ -157,7 +157,8 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 
 
 # Performance
-<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png">
+<p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" height="40%" width="40%">　　 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" height="40%" width="40%"></p>
+
 
 ### YOLOv4 vs. YOLOv3 results
 
