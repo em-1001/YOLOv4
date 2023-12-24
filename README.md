@@ -162,9 +162,9 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 ### mAP according to different Box Losses (pascal voc 100epoch)
 
 #### DIoU-NMS
-|mAP|MSE|IoU|GIoU|DIoU|CIoU|
-|--|--|--|--|--|--|
-|**mAP@50**|17.5|25|45|34|23|34|
+|mAP|YOLOv3 MSE|YOLOv4 CIoU|
+|--|--|--|
+|**mAP@50**|17.5|25|
 
 confidence 몇으로 할지 다시생각  
 model을 직접 다시 구현?  
