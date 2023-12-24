@@ -13,13 +13,7 @@ from tqdm import tqdm
 
 
 def iou_width_height(boxes1, boxes2):
-    """
-    Parameters:
-        boxes1 (tensor): width and height of the first bounding boxes
-        boxes2 (tensor): width and height of the second bounding boxes
-    Returns:
-        tensor: Intersection over union of the corresponding boxes
-    """
+
     intersection = torch.min(boxes1[..., 0], boxes2[..., 0]) * torch.min(
         boxes1[..., 1], boxes2[..., 1]
     )
@@ -30,21 +24,6 @@ def iou_width_height(boxes1, boxes2):
 
 
 def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", iou_mode = "IoU", eps = 1e-7):
-    """
-    Video explanation of this function:
-    https://youtu.be/XXYG5ZWtjj0
-
-    This function calculates intersection over union (iou) given pred boxes
-    and target boxes.
-
-    Parameters:
-        boxes_preds (tensor): Predictions of Bounding Boxes (BATCH_SIZE, 4)
-        boxes_labels (tensor): Correct labels of Bounding Boxes (BATCH_SIZE, 4)
-        box_format (str): midpoint/corners, if boxes (x,y,w,h) or (x1,y1,x2,y2)
-
-    Returns:
-        tensor: Intersection over union for all examples
-    """
 
     if box_format == "midpoint":
         box1_x1 = boxes_preds[..., 0:1] - boxes_preds[..., 2:3] / 2
@@ -281,7 +260,9 @@ def mean_average_precision(
 
 
 def plot_image(image, boxes):
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py"""
     """Plots predicted bounding boxes on the image"""
+    
     cmap = plt.get_cmap("tab20b")
     class_labels = config.COCO_LABELS if config.DATASET=='COCO' else config.PASCAL_CLASSES
     colors = [cmap(i) for i in np.linspace(0, 1, len(class_labels))]
@@ -335,6 +316,9 @@ def get_evaluation_bboxes(
     iou_mode = "IoU",
     device="cuda",
 ):
+
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py"""
+    
     # make sure model is in eval before get bboxes
     model.eval()
     train_idx = 0
@@ -386,6 +370,8 @@ def get_evaluation_bboxes(
 
 def cells_to_bboxes(predictions, anchors, S, is_preds=True):
     """
+    reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py
+    
     Scales the predictions coming from the model to
     be relative to the entire image such that they for example later
     can be plotted or.
@@ -424,6 +410,8 @@ def cells_to_bboxes(predictions, anchors, S, is_preds=True):
     return converted_bboxes.tolist()
 
 def check_class_accuracy(model, loader, threshold):
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py"""
+    
     model.eval()
     tot_class_preds, correct_class = 0, 0
     tot_noobj, correct_noobj = 0, 0
@@ -457,6 +445,8 @@ def check_class_accuracy(model, loader, threshold):
 
 
 def get_mean_std(loader):
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py"""
+    
     # var[X] = E[X**2] - E[X]**2
     channels_sum, channels_sqrd_sum, num_batches = 0, 0, 0
 
@@ -493,6 +483,8 @@ def load_checkpoint(checkpoint_file, model, optimizer, lr):
 
 
 def get_loaders(train_csv_path, test_csv_path):
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py"""
+    
     from dataset import YOLODataset
 
     IMAGE_SIZE = config.IMAGE_SIZE
@@ -549,6 +541,8 @@ def get_loaders(train_csv_path, test_csv_path):
     return train_loader, test_loader, train_eval_loader
 
 def plot_couple_examples(model, loader, thresh, iou_thresh, anchors, iou_mode="IoU"):
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py"""
+    
     model.eval()
     x, y = next(iter(loader))
     x = x.to("cuda")
@@ -575,6 +569,8 @@ def plot_couple_examples(model, loader, thresh, iou_thresh, anchors, iou_mode="I
 
 
 def seed_everything(seed=42):
+    """reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/utils.py"""
+    
     os.environ['PYTHONHASHSEED'] = str(seed)
     random.seed(seed)
     np.random.seed(seed)
