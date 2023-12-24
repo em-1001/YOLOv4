@@ -191,7 +191,7 @@ BottleNeck : https://velog.io/@lighthouse97/CNN%EC%9D%98-Bottleneck%EC%97%90-%EB
 YOLOv2 : https://arxiv.org/pdf/1612.08242.pdf      
 YOLOv3 : https://arxiv.org/pdf/1804.02767.pdf  
 YOLOv4 : https://arxiv.org/pdf/2004.10934.pdf  
-DIoU, CIoU : https://arxiv.org/pdf/1911.08287.pdf  
-DenseNet : https://arxiv.org/pdf/1608.06993.pdf  
-CSPNet : https://arxiv.org/pdf/1911.11929.pdf  
-
+DIoU, CIoU : https://arxiv.org/pdf/1911.08287.pdf    
+DenseNet : https://arxiv.org/pdf/1608.06993.pdf    
+CSPNet : https://arxiv.org/pdf/1911.11929.pdf    
+SPPNet : https://arxiv.org/pdf/1406.4729.pdf  
