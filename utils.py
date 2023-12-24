@@ -87,7 +87,7 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", io
     elif iou_mode == "DIoU":
         R_diou = p2 / c2
 
-        return iou - R_diou
+        return torch.clamp(iou - R_diou, min=-1.0, max=1.0)
 
     elif iou_mode == "CIoU":
         v = (4 / math.pi ** 2) * torch.pow(torch.atan(w2 / h2) - torch.atan(w1 / h1), 2)
@@ -96,7 +96,7 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", io
 
         R_ciou = p2 / c2 + v * alpha
 
-        return iou - R_ciou
+        return torch.clamp(iou - R_ciou, min=-1.0, max=1.0)
 
     else:
         return iou
