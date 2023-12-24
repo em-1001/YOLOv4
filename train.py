@@ -1,3 +1,5 @@
+# refernce : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/train.py
+
 import config
 import torch
 import torch.optim as optim
