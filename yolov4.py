@@ -193,13 +193,13 @@ class YOLOv4(nn.Module):
             DarknetConv2D(in_channels=256, out_channels=128, kernel_size=1, act="leaky"),
             nn.Upsample(scale_factor=2, mode='nearest'),
             Conv5(in_channels=256, up=True), # after concat
-            ScalePrediction(in_channels=128, num_classes=num_classes),
+            ScalePrediction(in_channels=128, num_classes=num_classes), # sbbox 52x52
             DarknetConv2D(in_channels=128, out_channels=256, kernel_size=3, downsample=True, act="leaky"),
             Conv5(in_channels=512, up=False),
-            ScalePrediction(in_channels=256, num_classes=num_classes),
+            ScalePrediction(in_channels=256, num_classes=num_classes), # mbbox 26x26
             DarknetConv2D(in_channels=256, out_channels=512, kernel_size=3, downsample=True, act="leaky"),
             Conv5(in_channels=1024, up=False),
-            ScalePrediction(in_channels=512, num_classes=num_classes)
+            ScalePrediction(in_channels=512, num_classes=num_classes)  # lbbox 13x13
         ])
 
     def forward(self, x):
