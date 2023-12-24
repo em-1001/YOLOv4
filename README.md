@@ -159,10 +159,7 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 # Performance
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" height="42%" width="42%">　　 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" height="42%" width="42%"></p>
 
-
-### YOLOv4 vs. YOLOv3 results
-
-#### NMS 
+### NMS 
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3 mAP50 MSE|?|?|?|
@@ -172,7 +169,7 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 |YOLOv4 mAP50 DIoU|?|?|?|
 |YOLOv4 mAP50 CIoU|?|?|?|
 
-#### DIoU-NMS
+### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3 mAP50 CIoU DIoU-NMS|?|?|?|
