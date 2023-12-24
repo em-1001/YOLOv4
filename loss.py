@@ -1,8 +1,5 @@
-"""
-Implementation of Yolo Loss Function similar to the one in Yolov3 paper,
-the difference from what I can tell is I use CrossEntropy for the classes
-instead of BinaryCrossEntropy.
-"""
+# reference : https://github.com/aladdinpersson/Machine-Learning-Collection/blob/master/ML/Pytorch/object_detection/YOLOv3/loss.py
+
 import random
 import torch
 import torch.nn as nn
