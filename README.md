@@ -159,7 +159,7 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 # Performance
 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png">
 
-### mAP according to different Box Losses (pascal voc 100epoch)
+### YOLOv4 vs. YOLOv3 results
 
 #### NMS 
 |Detection|320 x 320|416 x 416|512 x 512|
