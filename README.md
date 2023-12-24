@@ -161,13 +161,25 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 
 ### mAP according to different Box Losses (pascal voc 100epoch)
 
-#### DIoU-NMS
-|mAP|YOLOv3 MSE|YOLOv4 CIoU|
-|--|--|--|
-|**mAP@50**|17.5|25|
+#### NMS 
+|Detection|320 x 320|416 x 416|512 x 512|
+|--|--|--|--|
+|YOLOv3 mAP50 MSE|?|?|?|
+|YOLOv3 mAP50 DIoU|?|?|?|
+|YOLOv3 mAP50 CIoU|?|?|?|
+|YOLOv4 mAP50 MSE|?|?|?|
+|YOLOv4 mAP50 DIoU|?|?|?|
+|YOLOv4 mAP50 CIoU|?|?|?|
 
+#### DIoU-NMS
+|Detection|320 x 320|416 x 416|512 x 512|
+|--|--|--|--|
+|YOLOv3 mAP50 CIoU DIoU-NMS|?|?|?|
+|YOLOv4 mAP50 CIoU DIoU-NMS|?|?|?|
+
+config file에서 image size 바꿔가면서 실험 (320 x 320, 416 x 416, 512 x 512)  
 confidence 몇으로 할지 다시생각  
-model을 직접 다시 구현?  
+
 
 The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
