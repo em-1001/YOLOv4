@@ -163,10 +163,10 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3 mAP50 MSE|?|?|?|
-|YOLOv3 mAP50 DIoU|?|?|?|
+|YOLOv3 mAP50 GIoU|?|?|?|
 |YOLOv3 mAP50 CIoU|?|?|?|
 |YOLOv4 mAP50 MSE|?|?|?|
-|YOLOv4 mAP50 DIoU|?|?|?|
+|YOLOv4 mAP50 GIoU|?|?|?|
 |YOLOv4 mAP50 CIoU|?|?|?|
 
 ### DIoU-NMS
