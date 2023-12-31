@@ -59,23 +59,23 @@ class YOLODataset(Dataset):
             bboxes = augmentations["bboxes"]
 
         # Below assumes 3 scale predictions (as paper) and same num of anchors per scale
-        targets = [torch.zeros((self.num_anchors // 3, S, S, 6)) for S in self.S]
+        targets = [torch.zeros((self.num_anchors // 3, S, S, 6)) for S in self.S] # 6 -> [objectness, x, y, w, h, class]
         for box in bboxes:
             iou_anchors = iou(torch.tensor(box[2:4]), self.anchors)
-            anchor_indices = iou_anchors.argsort(descending=True, dim=0)
+            anchor_indices = iou_anchors.argsort(descending=True, dim=0) # argsort -> https://pytorch.org/docs/stable/generated/torch.argsort.html
             x, y, width, height, class_label = box
             has_anchor = [False] * 3  # each scale should have one anchor
             for anchor_idx in anchor_indices:
-                scale_idx = anchor_idx // self.num_anchors_per_scale
-                anchor_on_scale = anchor_idx % self.num_anchors_per_scale
+                scale_idx = anchor_idx // self.num_anchors_per_scale # scale -> 0, 1, 2
+                anchor_on_scale = anchor_idx % self.num_anchors_per_scale # an anchor of particular scale -> 0, 1, 2
                 S = self.S[scale_idx]
-                i, j = int(S * y), int(S * x)  # which cell
+                i, j = int(S * y), int(S * x)  # which cell e.g. x = 0.5, S = 13 --> int(6.5) = 6th cell of x
                 anchor_taken = targets[scale_idx][anchor_on_scale, i, j, 0]
                 if not anchor_taken and not has_anchor[scale_idx]:
-                    targets[scale_idx][anchor_on_scale, i, j, 0] = 1
-                    x_cell, y_cell = S * x - j, S * y - i  # both between [0,1]
+                    targets[scale_idx][anchor_on_scale, i, j, 0] = 1 # objectness = 1
+                    x_cell, y_cell = S * x - j, S * y - i  # both are between [0, 1] e.g. 6.5 - 6 = 0.5
                     width_cell, height_cell = (
-                        width * S,
+                        width * S, # e.g. S = 13, width = 0.5, 6.5
                         height * S,
                     )  # can be greater than 1 since it's relative to cell
                     box_coordinates = torch.tensor(
@@ -85,6 +85,7 @@ class YOLODataset(Dataset):
                     targets[scale_idx][anchor_on_scale, i, j, 5] = int(class_label)
                     has_anchor[scale_idx] = True
 
+                # box가 현재 scale_idx에 대한 anchor 할당을 iou가 가장 높은거로 받았으나 각 scale당 3개의 anchor가 존재하므로 iou가 가장 높은거 이외의 것들이 여기로 온다.
                 elif not anchor_taken and iou_anchors[anchor_idx] > self.ignore_iou_thresh:
                     targets[scale_idx][anchor_on_scale, i, j, 0] = -1  # ignore prediction
 
