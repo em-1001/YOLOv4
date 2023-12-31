@@ -201,7 +201,7 @@ Up to the above code is the result of one scale, and since it is repeated (three
 ## Implementation of $𝟙^{obj}_ {i j}$ and $𝟙^{noobj}_{i j}$
 
 
-In the expression **target[..., 1:5][obj]**, the **[obj]** at the end is used for boolean indexing or masking**($𝟙^{obj}_ {i j}$, $𝟙^{noobj}_{i j}$)** . Let's break down the expression to understand it better:
+In the expression **target[..., 1:5][obj]**, the **[obj]** at the end is used for boolean indexing or masking **($𝟙^{obj}_ {i j}$, $𝟙^{noobj}_{i j}$)** . Let's break down the expression to understand it better:
 
 1. **target[..., 1:5]**: This part selects a subarray of the target tensor. Specifically, it selects the elements along the last dimension (index 1 to 4) of the tensor. This is often used in object detection models to extract the predicted bounding box coordinates.
 
