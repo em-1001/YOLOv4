@@ -191,7 +191,7 @@ class CosineAnnealingLRWithWarmup:
 ### NMS 
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|YOLOv3+MSE|?|31.7(100)|?|
+|YOLOv3|?|31.7(100)|?|
 |CSP|?|?|?|
 |CSP+GIoU|?|?|?|
 |CSP+GIoU+CA|?|?|?|
