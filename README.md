@@ -195,7 +195,7 @@ class CosineAnnealingLRWithWarmup:
 |CSP|?|?|?|
 |CSP+GIoU|?|?|?|
 |CSP+GIoU+CA|?|?|?|
-|CSP+GIoU+CA+Mosaic|?|23|?|
+|CSP+GIoU+CA+Mosaic|?|?|?|
 
 ### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
