@@ -155,6 +155,10 @@ $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} 
 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
+## CosineAnnealing
+https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html 
+
+## Mosaic Augmentation
 
 # Performance
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" height="42%" width="42%">　　 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" height="42%" width="42%"></p>
@@ -185,11 +189,12 @@ The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 One-stage object detection : https://machinethink.net/blog/object-detection/   
 DIoU, CIoU : https://hongl.tistory.com/215  
 YOLOv3 : https://herbwood.tistory.com/21    
-&#160;&#160;&#160;&#160;&#160;　　　 https://csm-kr.tistory.com/11   
-&#160;&#160;&#160;&#160;&#160;　　　 https://towardsdatascience.com/dive-really-deep-into-yolo-v3-a-beginners-guide-9e3d2666280e  
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;　　 https://csm-kr.tistory.com/11   
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;　　 https://towardsdatascience.com/dive-really-deep-into-yolo-v3-a-beginners-guide-9e3d2666280e  
 YOLOv4 : https://wikidocs.net/181720   
+　　　 　https://csm-kr.tistory.com/62  
 Residual block : https://daeun-computer-uneasy.tistory.com/28  
-　　　　&#160;&#160;　　　https://techblog-history-younghunjo1.tistory.com/279     
+　　　　　　　https://techblog-history-younghunjo1.tistory.com/279     
 NMS : https://wikidocs.net/142645     
 mAP : https://ctkim.tistory.com/entry/mAPMean-Average-Precision-%EC%A0%95%EB%A6%AC   
 BottleNeck : https://velog.io/@lighthouse97/CNN%EC%9D%98-Bottleneck%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4   
