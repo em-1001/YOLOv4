@@ -191,11 +191,11 @@ class CosineAnnealingLRWithWarmup:
 ### NMS 
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|YOLOv3 mAP50 MSE|?|31.7(100)|?|
-|YOLOv4 mAP50 MSE|?|?|?|
-|YOLOv4 mAP50 GIoU|?|?|?|
-|YOLOv4 mAP50 DIoU|?|?|?|
-|YOLOv4 mAP50 CIoU|?|23|?|
+|YOLOv3+MSE|?|31.7(100)|?|
+|CSP|?|?|?|
+|CSP+GIoU|?|?|?|
+|CSP+GIoU+CA|?|?|?|
+|CSP+GIoU+CA+Mosaic|?|23|?|
 
 ### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
