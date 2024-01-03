@@ -86,10 +86,10 @@ class SPP(nn.Module):
         self.maxpool13 = nn.MaxPool2d(kernel_size=13, stride=1, padding=6)
 
     def forward(self, x):
-        x = torch.cat([self.maxpool13(x),
-                       self.maxpool9(x),
+        x = torch.cat([x,
                        self.maxpool5(x),
-                       x], dim=1)
+                       self.maxpool9(x),
+                       self.maxpool13(x)], dim=1)
 
         return x
 
