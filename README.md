@@ -188,7 +188,7 @@ class CosineAnnealingLRWithWarmup:
 # Performance
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" height="42%" width="42%">　　 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" height="42%" width="42%"></p>
 
-### NMS 
+### NMS
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3|?|31.7(100)|?|
