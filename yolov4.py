@@ -61,7 +61,7 @@ class CSPResBlock(nn.Module):
 
     def forward(self, x):
         route = self.split1x1(x)
-        x = route
+        x = self.split1x1(x)
 
         for module in self.DenseBlock:
             h = x
