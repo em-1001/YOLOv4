@@ -155,7 +155,7 @@ $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} 
 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
-## CosineAnnealing
+## Cosine Annealing
 https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html 
 
 ## Mosaic Augmentation
