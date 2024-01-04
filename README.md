@@ -156,6 +156,11 @@ $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
 ## Cosine Annealing
+
+$$\eta_t = \eta_{\min} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 + \cos{\left(\frac{T_{cur}}{T_{\max}}\pi\right)} \right), \ T_{cur} \neq (2k+1)T_{\max}$$
+
+$$\eta_{t+1} = \eta_{t} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 - \cos{\left(\frac{1}{T_{\max}}\pi\right)} \right), \ T_{cur} = (2k+1)T_{\max}$$
+
 https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html   
 code : https://github.com/pytorch/pytorch/blob/v1.1.0/torch/optim/lr_scheduler.py#L222
 
