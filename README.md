@@ -525,4 +525,5 @@ YOLOv4 : https://arxiv.org/pdf/2004.10934.pdf
 DIoU, CIoU : https://arxiv.org/pdf/1911.08287.pdf    
 DenseNet : https://arxiv.org/pdf/1608.06993.pdf    
 CSPNet : https://arxiv.org/pdf/1911.11929.pdf    
-SPPNet : https://arxiv.org/pdf/1406.4729.pdf  
+SPPNet : https://arxiv.org/pdf/1406.4729.pdf    
+SGDR : https://arxiv.org/pdf/1608.03983v5.pdf  
