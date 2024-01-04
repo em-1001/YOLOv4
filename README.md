@@ -193,6 +193,7 @@ class CosineAnnealingLRWithWarmup:
 # Performance
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" height="42%" width="42%">　　 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" height="42%" width="42%"></p>
 
+### configuration  
 ```py
 # YOLOv3
 NUM_EPOCHS = 100
