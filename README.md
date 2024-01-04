@@ -188,6 +188,36 @@ class CosineAnnealingLRWithWarmup:
 # Performance
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" height="42%" width="42%">　　 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" height="42%" width="42%"></p>
 
+```py
+# YOLOv3
+LEARNING_RATE = 1e-5
+WEIGHT_DECAY = 1e-4
+CONF_THRESHOLD = 0.05
+MAP_IOU_THRESH = 0.5
+NMS_IOU_THRESH = 0.45
+
+ANCHORS = [
+    [(0.28, 0.22), (0.38, 0.48), (0.9, 0.78)],
+    [(0.07, 0.15), (0.15, 0.11), (0.14, 0.29)],
+    [(0.02, 0.03), (0.04, 0.07), (0.08, 0.06)],
+]  # Note these have been rescaled to be between [0, 1]
+
+
+# YOLOv4
+LEARNING_RATE = 0.00261
+WEIGHT_DECAY = 0.0005
+CONF_THRESHOLD = 0.05
+MAP_IOU_THRESH = 0.5
+NMS_IOU_THRESH = 0.45
+
+ANCHORS = [
+    [(0.30, 0.23), (0.41, 0.52), (0.99, 0.87)],
+    [(0.07, 0.16), (0.16, 0.11), (0.15, 0.31)],
+    [(0.02, 0.03), (0.04, 0.07), (0.08, 0.06)],
+]  # Note these have been rescaled to be between [0, 1]
+```
+
+
 ### NMS
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
