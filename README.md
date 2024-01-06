@@ -341,8 +341,8 @@ yolov4 : 6 -> 13 -> 14 -> 17 -> 23
 ### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|YOLOv3 mAP50 MSE DIoU-NMS|?|?|?|
-|YOLOv4 mAP50 CIoU DIoU-NMS|?|?|?|
+|YOLOv3+MSE DIoU-NMS|?|?|?|
+|CSP+CIoU+CA DIoU-NMS|?|?|?|
 
 config file에서 image size 바꿔가면서 실험 (320 x 320, 416 x 416, 512 x 512)  
 confidence 몇으로 할지 다시생각  
