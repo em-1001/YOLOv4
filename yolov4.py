@@ -26,7 +26,7 @@ class DarknetConv2D(nn.Module):
         self.downsample = downsample
         self.bn = nn.BatchNorm2d(out_channels)
         self.mish = nn.Mish()
-        self.leaky = nn.LeakyReLU(0.1)
+        self.leaky = nn.LeakyReLU(0.1, inplace=True)
         self.use_bn_act = bn_act
         self.act = act
 
@@ -44,7 +44,7 @@ class DarknetConv2D(nn.Module):
 
 
 class CSPResBlock(nn.Module):
-    def __init__(self, in_channels, num_repeats=1):
+    def __init__(self, in_channels, is_first = False, num_repeats=1):
         super().__init__()
 
         self.split1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels//2, kernel_size=1)
@@ -58,6 +58,19 @@ class CSPResBlock(nn.Module):
             DenseLayer.append(DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=1))
             DenseLayer.append(DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=3))
             self.DenseBlock.append(DenseLayer)
+
+        if is_first:
+            self.split1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
+            self.res1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
+            self.concat1x1 = DarknetConv2D(in_channels=in_channels*2, out_channels=in_channels, kernel_size=1)
+
+            self.DenseBlock = nn.ModuleList()
+            for i in range(num_repeats):
+                DenseLayer = nn.ModuleList()
+                DenseLayer.append(DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1))
+                DenseLayer.append(DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=3))
+                self.DenseBlock.append(DenseLayer)
+
 
     def forward(self, x):
         route = self.split1x1(x)
@@ -86,10 +99,10 @@ class SPP(nn.Module):
         self.maxpool13 = nn.MaxPool2d(kernel_size=13, stride=1, padding=6)
 
     def forward(self, x):
-        x = torch.cat([x,
-                       self.maxpool5(x),
+        x = torch.cat([self.maxpool13(x),
                        self.maxpool9(x),
-                       self.maxpool13(x)], dim=1)
+                       self.maxpool5(x),
+                       x], dim=1)
 
         return x
 
@@ -123,7 +136,7 @@ class CSPDarknet53(nn.Module):
         self.layers = nn.ModuleList([
             DarknetConv2D(in_channels=in_channels, out_channels=32, kernel_size=3),
             DarknetConv2D(in_channels=32, out_channels=64, kernel_size=3, downsample=True),
-            CSPResBlock(in_channels=64, num_repeats=1),
+            CSPResBlock(in_channels=64, is_first = True, num_repeats=1),
             DarknetConv2D(in_channels=64, out_channels=128, kernel_size=3, downsample=True),
             CSPResBlock(in_channels=128, num_repeats=2),
             DarknetConv2D(in_channels=128, out_channels=256, kernel_size=3, downsample=True),
@@ -237,3 +250,9 @@ class YOLOv4(nn.Module):
 
         outputs[0], outputs[1], outputs[2] = outputs[2], outputs[1], outputs[0]
         return outputs
+
+        '''
+        torch.Size([1, 13, 13, 255])
+        torch.Size([1, 26, 26, 255])
+        torch.Size([1, 52, 52, 255])
+        '''
