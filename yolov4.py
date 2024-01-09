@@ -67,8 +67,8 @@ class CSPResBlock(nn.Module):
             self.DenseBlock = nn.ModuleList()
             for i in range(num_repeats):
                 DenseLayer = nn.ModuleList()
-                DenseLayer.append(DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1))
-                DenseLayer.append(DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=3))
+                DenseLayer.append(DarknetConv2D(in_channels=in_channels, out_channels=in_channels//2, kernel_size=1))
+                DenseLayer.append(DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels, kernel_size=3))
                 self.DenseBlock.append(DenseLayer)
 
 
