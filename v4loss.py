@@ -19,9 +19,9 @@ class YoloLoss(nn.Module):
 
         # Constants signifying how much to pay for each respective part of the loss
         self.lambda_class = 1
-        self.lambda_noobj = 5 #0.5
+        self.lambda_noobj = 10 #0.5
         self.lambda_obj = 1
-        self.lambda_box = 5 #2.5
+        self.lambda_box = 10 #2.5
 
     def forward(self, predictions, target, anchors, box_loss="MSE"):
         # Check where obj and noobj (we ignore if target == -1)
@@ -41,7 +41,7 @@ class YoloLoss(nn.Module):
         ious = intersection_over_union(box_preds[obj], target[..., 1:5][obj]).detach()
         object_loss = self.bce(
           (predictions[..., 0:1][obj]), (ious * target[..., 0:1][obj])
-        ) 
+        )  
 
 
         # Box Loss
@@ -50,7 +50,7 @@ class YoloLoss(nn.Module):
             target[..., 3:5] = torch.log(
                 (1e-16 + target[..., 3:5] / anchors)
             )  # width, height coordinates
-            box_loss = self.mse(predictions[..., 1:5][obj], target[..., 1:5][obj]) 
+            box_loss = self.mse(predictions[..., 1:5][obj], target[..., 1:5][obj])  
 
         elif box_loss == "IoU" or box_loss == "GIoU" or box_loss == "DIoU" or box_loss == "CIoU":
             anchors = anchors.reshape(1, 3, 1, 1, 2) # 3(anchor) x 2(h, w), p_w * exp(t_w)를 연산하기 위해 reshape
@@ -63,6 +63,7 @@ class YoloLoss(nn.Module):
 
         # Class Loss
         
+        # https://github.com/eriklindernoren/PyTorch-YOLOv3/blob/master/pytorchyolo/utils/loss.py
         
         class_target = torch.zeros_like(predictions[..., 5:][obj])
         for i in range(class_target.shape[0]):
@@ -70,7 +71,7 @@ class YoloLoss(nn.Module):
 
         class_loss = self.bce(
             (predictions[..., 5:][obj]), (class_target)
-        )
+        ) 
         
         """
         class_loss = self.entropy(
