@@ -64,19 +64,20 @@ class YoloLoss(nn.Module):
         # Class Loss
         
         # https://github.com/eriklindernoren/PyTorch-YOLOv3/blob/master/pytorchyolo/utils/loss.py
-        
+
+        """
         class_target = torch.zeros_like(predictions[..., 5:][obj])
         for i in range(class_target.shape[0]):
             class_target[i][int(target[..., 5][obj][i])] = 1.
 
         class_loss = self.bce(
             (predictions[..., 5:][obj]), (class_target)
-        ) 
+        ) """
         
-        """
+
         class_loss = self.entropy(
             (predictions[..., 5:][obj]), (target[..., 5][obj].long()),
-        )"""
+        )
 
         #print("__________________________________")
         #print(self.lambda_box * box_loss)
