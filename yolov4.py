@@ -47,7 +47,8 @@ class CSPResBlock(nn.Module):
     def __init__(self, in_channels, is_first = False, num_repeats=1):
         super().__init__()
 
-        self.split1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels//2, kernel_size=1)
+        self.route_1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels//2, kernel_size=1)
+        self.route_2 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels//2, kernel_size=1)
         self.res1x1 = DarknetConv2D(in_channels=in_channels//2, out_channels=in_channels//2, kernel_size=1)
         self.concat1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
         self.num_repeats = num_repeats
@@ -60,7 +61,8 @@ class CSPResBlock(nn.Module):
             self.DenseBlock.append(DenseLayer)
 
         if is_first:
-            self.split1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
+            self.route_1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
+            self.route_2 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
             self.res1x1 = DarknetConv2D(in_channels=in_channels, out_channels=in_channels, kernel_size=1)
             self.concat1x1 = DarknetConv2D(in_channels=in_channels*2, out_channels=in_channels, kernel_size=1)
 
@@ -73,8 +75,8 @@ class CSPResBlock(nn.Module):
 
 
     def forward(self, x):
-        route = self.split1x1(x)
-        x = self.split1x1(x)
+        route = self.route_1(x)
+        x = self.route_2(x)
 
         for module in self.DenseBlock:
             h = x
