@@ -82,7 +82,7 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", io
 
         R_giou = abs(C - (B + B_gt - intersection)) / abs(C)
 
-        return iou - R_giou
+        return torch.clamp(iou - R_giou, min=-1.0, max=1.0)
 
     elif iou_mode == "DIoU":
         R_diou = p2 / c2
