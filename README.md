@@ -330,7 +330,7 @@ class YoloLoss(nn.Module):
 
 ```
 yolov3 : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
-yolov4 : 0 -> 3 -> 7 
+yolov4 : 0 -> 3 -> 7 -> 9
 ```
 
 
