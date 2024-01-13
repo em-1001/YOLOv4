@@ -201,36 +201,30 @@ class CosineAnnealingLRWithWarmup:
 ### configuration  
 ```py
 # YOLOv3
+BATCH_SIZE = 32
 OPTIMIZER = Adam
 NUM_EPOCHS = 100
-LEARNING_RATE = 1e-5
-WEIGHT_DECAY = 1e-4
 CONF_THRESHOLD = 0.05
 MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
-
-ANCHORS = [
-    [(0.28, 0.22), (0.38, 0.48), (0.9, 0.78)],
-    [(0.07, 0.15), (0.15, 0.11), (0.14, 0.29)],
-    [(0.02, 0.03), (0.04, 0.07), (0.08, 0.06)],
-]  # Note these have been rescaled to be between [0, 1]
+WEIGHT_DECAY = 1e-4
+LEARNING_RATE = 1e-5
 
 
 # YOLOv4
-OPTIMIZER = SGD
+BATCH_SIZE = 32
+OPTIMIZER = Adam
 NUM_EPOCHS = 100
-LEARNING_RATE = 0.001
-MOMENTUM = 0.949
-WEIGHT_DECAY = 0.0005
 CONF_THRESHOLD = 0.05
 MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
+WEIGHT_DECAY = 1e-4
+# 0 ~ 30 epoch
+LEARNING_RATE = 0.0001 # YOLOv3 -> 1e-5
+WEIGHT_DECAY = 0.0001 # YOLOv3 -> 1e-4
 
-ANCHORS = [
-    [(0.30, 0.23), (0.41, 0.52), (0.99, 0.87)],
-    [(0.07, 0.16), (0.16, 0.11), (0.15, 0.31)],
-    [(0.02, 0.03), (0.04, 0.07), (0.08, 0.06)],
-]  # Note these have been rescaled to be between [0, 1]
+# 30 ~ 50 epoch
+LEARNING_RATE = 0.00005 # YOLOv3 -> 1e-5
 ```
 
 ```
