@@ -199,8 +199,9 @@ class CosineAnnealingLRWithWarmup:
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0.png" height="42%" width="42%">　　 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1.png" height="42%" width="42%"></p>
 
 ### configuration  
-```
+```ini
 # YOLOv3
+
 BATCH_SIZE = 32
 OPTIMIZER = Adam
 NUM_EPOCHS = 100
@@ -212,6 +213,7 @@ LEARNING_RATE = 1e-5
 
 
 # YOLOv4
+
 BATCH_SIZE = 32
 OPTIMIZER = Adam
 NUM_EPOCHS = 100
@@ -219,11 +221,14 @@ CONF_THRESHOLD = 0.05
 MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
 WEIGHT_DECAY = 1e-4
+
 # 0 ~ 30 epoch
+
 LEARNING_RATE = 0.0001 # YOLOv3 -> 1e-5
 WEIGHT_DECAY = 0.0001 # YOLOv3 -> 1e-4
 
 # 30 ~ 50 epoch
+
 LEARNING_RATE = 0.00005 # YOLOv3 -> 1e-5
 ```
 
