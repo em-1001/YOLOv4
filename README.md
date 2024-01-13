@@ -159,8 +159,6 @@ $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}}
 
 $$\eta_t = \eta_{\min} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 + \cos{\left(\frac{T_{cur}}{T_{\max}}\pi\right)} \right), \ T_{cur} \neq (2k+1)T_{\max}$$
 
-$$\eta_{t+1} = \eta_{t} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 - \cos{\left(\frac{1}{T_{\max}}\pi\right)} \right), \ T_{cur} = (2k+1)T_{\max}$$
-
 $\eta_{\min}$ : min learning rate    
 $\eta_{\max}$ : max learning rate    
 $T_{\max}$ : period
