@@ -105,7 +105,7 @@ class ScalePrediction(nn.Module):
         super().__init__()
 
         self.conv = DarknetConv2D(in_channels, in_channels*2, 3, 1, "leaky")
-        self.ScalePred = DarknetConv2D(in_channels*2, 3*(num_classes+5), 1, 1, "leaky", bn_act=False)
+        self.ScalePred = DarknetConv2D(in_channels*2, 3*(num_classes+5), 1, 1, bn_act=False)
         self.num_classes = num_classes
 
     def forward(self, x):
@@ -277,11 +277,9 @@ class YOLOv4(nn.Module):
                 N.pop()
 
         outputs[0], outputs[1], outputs[2] = outputs[2], outputs[1], outputs[0]
-
-        '''
-        torch.Size([1, 13, 13, 255])
-        torch.Size([1, 26, 26, 255])
-        torch.Size([1, 52, 52, 255])
-        '''
+        
+        # lbbox 13x13 -> torch.Size([1, 13, 13, 255])
+        # mbbox 26x26 -> torch.Size([1, 26, 26, 255])
+        # sbbox 52x52 -> torch.Size([1, 52, 52, 255])
 
         return outputs
