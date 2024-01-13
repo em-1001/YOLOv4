@@ -335,7 +335,7 @@ yolov4 : 3 -> 14 -> 28 -> 32
 LEARNING_RATE = 0.0001 # YOLOv3 -> 1e-5
 WEIGHT_DECAY = 0.0001 # YOLOv3 -> 1e-4
 
-# 40 epoch
+# 30 ~ 50 epoch
 LEARNING_RATE = 0.00005 # YOLOv3 -> 1e-5
 ```
 
