@@ -254,6 +254,7 @@ CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니
 |YOLOv3|?|31.7|?|
 |CSP|?|?|?|
 |CSP+GIoU|?|?|?|
+|CSP+CIoU|?|?|?|
 |CSP+GIoU+CA|?|?|?|
 |CSP+GIoU+CA+Mosaic|?|?|?|
 
