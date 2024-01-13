@@ -330,7 +330,7 @@ class YoloLoss(nn.Module):
 
 ```
 yolov3 : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
-yolov4 : 3 -> 14 -> 28 
+yolov4 : 3 -> 14 -> 28 -> 32
 # 0 ~ 30 epoch
 LEARNING_RATE = 0.0001 # YOLOv3 -> 1e-5
 WEIGHT_DECAY = 0.0001 # YOLOv3 -> 1e-4
