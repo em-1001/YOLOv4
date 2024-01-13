@@ -243,7 +243,7 @@ LEARNING_RATE = 0.00001
 ```
 
 ```
-mAP per 10 epochs
+# mAP per 10 epochs
 yolov3 : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
 yolov4 : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6
 ```
