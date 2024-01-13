@@ -339,6 +339,9 @@ WEIGHT_DECAY = 0.0001 # YOLOv3 -> 1e-4
 LEARNING_RATE = 0.00005 # YOLOv3 -> 1e-5
 ```
 
+### 실패
+LEARNING_RATE = 0.001로 했을 때 mAP 0 -> 3 -> 7 -> 9 -> 7 .. 로 큰 성능이 매우 낮았다. 
+
 
 ### NMS
 |Detection|320 x 320|416 x 416|512 x 512|
