@@ -4,7 +4,7 @@ import config
 import torch
 import torch.optim as optim
 
-from yolov4 import YOLOv4
+# from yolov4 import YOLOv4
 from tqdm import tqdm
 from utils import (
     mean_average_precision,
@@ -68,7 +68,7 @@ def main():
         train_csv_path=config.DATASET + "/train.csv", test_csv_path=config.DATASET + "/test.csv"
     )
 
-    if False: # config.LOAD_MODEL
+    if config.LOAD_MODEL: # config.LOAD_MODEL
         load_checkpoint(
             config.CHECKPOINT_FILE, model, optimizer, config.LEARNING_RATE
         )
@@ -78,19 +78,19 @@ def main():
         * torch.tensor(config.S).unsqueeze(1).unsqueeze(1).repeat(1, 3, 2)
     ).to(config.DEVICE)
 
-    for epoch in range(10):
+    for epoch in range(100):
         train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors, box_loss="MSE")
 
         if config.SAVE_MODEL:
-            save_checkpoint(model, optimizer, filename=f"checkpoint.pth.tar")
+            save_checkpoint(model, optimizer, filename=f"/content/drive/MyDrive/yolov3/checkpoint.pth.tar")
 
         #print(f"Currently epoch {epoch}")
         #print("On Train Eval loader:")
         #print("On Train loader:")
         #check_class_accuracy(model, train_loader, threshold=config.CONF_THRESHOLD)
 
-        if epoch > 0 and epoch % 5 == 0:
-            plot_couple_examples(model, test_loader, 0.4, 0.45, scaled_anchors , iou_mode="IoU")
+        if epoch > 0 and (epoch+1) % 10 == 0:
+            # plot_couple_examples(model, test_loader, 0.4, 0.45, scaled_anchors , iou_mode="IoU")
             # check_class_accuracy(model, test_loader, threshold=config.CONF_THRESHOLD)
             pred_boxes, true_boxes = get_evaluation_bboxes(
                 test_loader,
