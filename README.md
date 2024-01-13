@@ -200,7 +200,7 @@ class CosineAnnealingLRWithWarmup:
 
 ### configuration  
 ```ini
-# YOLOv3
+# YOLOv3  
 
 BATCH_SIZE = 32
 OPTIMIZER = Adam
@@ -224,12 +224,11 @@ WEIGHT_DECAY = 1e-4
 
 # 0 ~ 30 epoch
 
-LEARNING_RATE = 0.0001 # YOLOv3 -> 1e-5
-WEIGHT_DECAY = 0.0001 # YOLOv3 -> 1e-4
+LEARNING_RATE = 0.0001 
 
 # 30 ~ 50 epoch
 
-LEARNING_RATE = 0.00005 # YOLOv3 -> 1e-5
+LEARNING_RATE = 0.00005 
 ```
 
 ```
