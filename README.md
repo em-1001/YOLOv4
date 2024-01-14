@@ -156,6 +156,7 @@ $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
 ## Cosine Annealing
+Cosine annealing은 학습율의 최대값과 최소값을 정해서 그 범위의 학습율을 코싸인 함수를 이용하여 스케쥴링하는 방법이다. Cosine anneaing의 이점은 최대값과 최소값 사이에서 코싸인 함수를 이용하여 급격히 증가시켰다가 급격히 감소시키 때문에 모델의 매니폴드 공간의 안장(saddle point)를 빠르게 벗어날 수 있으며, 학습 중간에 생기는 정체 구간들 또한 빠르게 벗어날 수 있도록 한다.
 
 $$\eta_t = \eta_{\min} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 + \cos{\left(\frac{T_{cur}}{T_{\max}}\pi\right)} \right), \ T_{cur} \neq (2k+1)T_{\max}$$
 
@@ -295,7 +296,7 @@ Residual block : https://daeun-computer-uneasy.tistory.com/28
 NMS : https://wikidocs.net/142645     
 mAP : https://ctkim.tistory.com/entry/mAPMean-Average-Precision-%EC%A0%95%EB%A6%AC   
 BottleNeck : https://velog.io/@lighthouse97/CNN%EC%9D%98-Bottleneck%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4   
-
+Cosine Annealing : https://ai4nlp.tistory.com/16  
 
 
 ## Paper
