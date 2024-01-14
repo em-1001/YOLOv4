@@ -221,7 +221,7 @@ LEARNING_RATE = 1e-5
 
 BATCH_SIZE = 32
 OPTIMIZER = Adam
-NUM_EPOCHS = 100
+NUM_EPOCHS = 70
 CONF_THRESHOLD = 0.05
 MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
@@ -256,7 +256,7 @@ CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3|?|31.7|?|
-|CSP|?|?|?|
+|CSP|?|[42.5](https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch)|?|
 |CSP+GIoU|?|?|?|
 |CSP+CIoU|?|?|?|
 |CSP+GIoU+CA|?|?|?|
