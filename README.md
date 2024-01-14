@@ -256,7 +256,7 @@ CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3|?|31.7|?|
-|CSP|?|[42.5](https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch)|?|
+|CSP|?|42.5|?|
 |CSP+GIoU|?|?|?|
 |CSP+CIoU|?|?|?|
 |CSP+GIoU+CA|?|?|?|
