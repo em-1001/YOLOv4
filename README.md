@@ -228,7 +228,7 @@ MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
 WEIGHT_DECAY = 1e-4
 
-# CSP                         # CSP+CIoU
+# CSP                         # CSP + CIoU
 # 0 ~ 30 epoch                # 0 ~ 20 epoch                
 
 LEARNING_RATE = 0.0001        LEARNING_RATE = 0.01
