@@ -228,7 +228,7 @@ NMS_IOU_THRESH = 0.45
 WEIGHT_DECAY = 1e-4
 
 # CSP                         # CSP+CIoU
-# 0 ~ 30 epoch                # 0 ~  epoch                
+# 0 ~ 30 epoch                # 0 ~ 20 epoch                
 
 LEARNING_RATE = 0.0001        LEARNING_RATE = 0.01
 
@@ -245,7 +245,7 @@ LEARNING_RATE = 0.00001
 # mAP per 10 epochs
 yolov3 : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
 CSP : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
-CSP+CIoU : 6 -> 
+CSP+CIoU : 6 -> 21
 ```
 
 ### 실패
