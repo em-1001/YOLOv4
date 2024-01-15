@@ -195,11 +195,7 @@ class CosineAnnealingLRWithWarmup:
 ## Mosaic Augmentation
 
 # Performance
-![image](https://github.com/em-1001/YOLOv4/assets/80628552/cecb5887-a99f-4865-b1ce-b97b46daa2b5)![image](https://github.com/em-1001/YOLOv4/assets/80628552/05b2d40e-1477-49fd-b9e3-11dc303e18a1)
-
-
-
-<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0_1.png"> <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1_1.png">      
+<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0_1.png">&#160;&#160;<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1_1.png">      
 
 ### configuration  
 ```ini
