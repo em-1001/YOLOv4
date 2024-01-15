@@ -229,13 +229,13 @@ NMS_IOU_THRESH = 0.45
 WEIGHT_DECAY = 1e-4
 
 # CSP                         # CSP + CIoU
-# 0 ~ 30 epoch                # 0 ~  epoch                
+# 0 ~ 30 epoch                # 0 ~ 20 epoch                
 
 LEARNING_RATE = 0.0001        LEARNING_RATE = 0.01
 
-# 30 ~ 50 epoch
+# 30 ~ 50 epoch               # 20 ~ 
 
-LEARNING_RATE = 0.00005
+LEARNING_RATE = 0.00005       LEARNING_RATE = 0.005
 
 # 50 ~  epoch
 
