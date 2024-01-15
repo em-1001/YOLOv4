@@ -233,13 +233,13 @@ WEIGHT_DECAY = 1e-4
 
 LEARNING_RATE = 0.0001        LEARNING_RATE = 0.01
 
-# 30 ~ 50 epoch               # 20 ~ 
+# 30 ~ 50 epoch               # 20 ~ 33 epoch    
 
 LEARNING_RATE = 0.00005       LEARNING_RATE = 0.005
 
-# 50 ~  epoch
+# 50 ~  epoch                 # 33 ~ 
 
-LEARNING_RATE = 0.00001
+LEARNING_RATE = 0.00001       LEARNING_RATE = 0.001
 ```
 
 ```
