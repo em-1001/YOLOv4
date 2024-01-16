@@ -240,11 +240,11 @@ LEARNING_RATE = 0.00005       LEARNING_RATE = 0.005
 
 LEARNING_RATE = 0.00001       LEARNING_RATE = 0.001
 
-                              # 40 ~ 50 epoch
+                              # 40 ~ 60 epoch
 
                               LEARNING_RATE = 0.0005
 
-                              # 50 ~ 70 epoch
+                              # 60 ~ 70 epoch
 
                               LEARNING_RATE = 0.0001
 ```
