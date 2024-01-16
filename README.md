@@ -240,16 +240,20 @@ LEARNING_RATE = 0.00005       LEARNING_RATE = 0.005
 
 LEARNING_RATE = 0.00001       LEARNING_RATE = 0.001
 
-                              # 40 ~  epoch
+                              # 40 ~ 50 epoch
 
                               LEARNING_RATE = 0.0005
+
+                              # 50 ~ 70 epoch
+
+                              LEARNING_RATE = 0.0001
 ```
 
 ```
 # mAP per 10 epochs
 yolov3 : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
 CSP : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
-CSP+CIoU : 6 -> 21 -> 28 -> 33 -> 40.1
+CSP+CIoU : 6 -> 21 -> 28 -> 33 -> 40.1 -> 42.0
 ```
 
 ### 시행착오
