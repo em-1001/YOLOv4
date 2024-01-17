@@ -287,7 +287,7 @@ https://csm-kr.tistory.com/62
 The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
 ### Pretrained Weights
-CSP : https://www.kaggle.com/sj2129tommy/datasets?scroll=true  
+YOLOv3 + CSP : https://www.kaggle.com/sj2129tommy/datasets?scroll=true  
 
 
 # Reference
