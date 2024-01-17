@@ -267,11 +267,12 @@ CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3|?|31.7|?|
-|CSP|?|42.5|?|
-|CSP+GIoU|?|?|?|
-|CSP+CIoU|?|?|?|
-|CSP+GIoU+CA|?|?|?|
-|CSP+GIoU+CA+Mosaic|?|?|?|
+|YOLOv3 + CSP|?|42.5|?|
+|YOLOv3 + CSP + GIoU|?|?|?|
+|YOLOv3 + CSP + CIoU|?|?|?|
+|YOLOv3 + CSP + CIoU + CA|?|?|?|
+|YOLOv3 + CSP + CIoU + CA + M|?|?|?|
+|YOLOv3 + CSP + CIoU + CA + M + IT|?|?|?|
 
 ### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
