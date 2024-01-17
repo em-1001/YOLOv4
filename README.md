@@ -248,7 +248,8 @@ LEARNING_RATE = 0.00001       LEARNING_RATE = 0.001
 
                               LEARNING_RATE = 0.0001
 ```
-CA : https://github.com/csm-kr/YOLOv4_pytorch/blob/master/main.py
+CA : https://github.com/csm-kr/YOLOv4_pytorch/blob/master/main.py  
+CA 사용법 : https://wikidocs.net/180475  
 ```
 # mAP per 10 epochs
 yolov3 : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
