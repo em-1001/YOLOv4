@@ -277,8 +277,8 @@ CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니
 ### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|YOLOv3+MSE DIoU-NMS|?|?|?|
-|CSP+CIoU+CA DIoU-NMS|?|?|?|
+|YOLOv3 + MSE DIoU-NMS|?|?|?|
+|YOLOv3 + CSP + CIoU + CA DIoU-NMS|?|?|?|
 
 config file에서 image size 바꿔가면서 실험 (320 x 320, 416 x 416, 512 x 512)  
 confidence 몇으로 할지 다시생각  
