@@ -263,7 +263,7 @@ LEARNING_RATE = 0.00001로 했을 땐 loss 감소가 너무 느리며 학습이 
 CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니까 그냥 하나의 conv를 정의하고 그 하나의 conv로 split을 해주면 된다고 생각했는데, 다시 생각해보니 각각의 conv로 따로 정의해줘야 각각의 conv 가중치가 업데이트 되면서 CSP의 역할을 할 수 있는거 같다.   
 확실히 CIoU를 쓰면 mAP가 빠르게 성장하는 듯?  
 
-### NMS
+### NMS(Non-maximum Suppression)
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3|?|31.7|?|
