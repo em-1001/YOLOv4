@@ -227,26 +227,18 @@ MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
 WEIGHT_DECAY = 1e-4
 
-# CSP                         # CSP + CIoU
-# 0 ~ 30 epoch                # 0 ~ 20 epoch                
+# 0 ~ 30 epoch                            
 
-LEARNING_RATE = 0.0001        LEARNING_RATE = 0.01
+LEARNING_RATE = 0.0001        
 
-# 30 ~ 50 epoch               # 20 ~ 33 epoch    
+# 30 ~ 50 epoch               
 
-LEARNING_RATE = 0.00005       LEARNING_RATE = 0.005
+LEARNING_RATE = 0.00005       
 
-# 50 ~  epoch                 # 33 ~ 40 epoch
+# 50 ~  epoch                
 
-LEARNING_RATE = 0.00001       LEARNING_RATE = 0.001
+LEARNING_RATE = 0.00001      
 
-                              # 40 ~ 60 epoch
-
-                              LEARNING_RATE = 0.0005
-
-                              # 60 ~ 70 epoch
-
-                              LEARNING_RATE = 0.0001
 ```
 CA : https://github.com/csm-kr/YOLOv4_pytorch/blob/master/main.py  
 CA 사용법 : https://wikidocs.net/180475  
@@ -269,7 +261,7 @@ CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니
 |--|--|--|--|
 |YOLOv3|?|31.7|?|
 |YOLOv3 + CSP|?|42.5|?|
-|YOLOv3 + CSP + GIoU|?|?|?|
+|YOLOv3 + CSP + GIoU|?|45.7|?|
 |YOLOv3 + CSP + CIoU|?|?|?|
 |YOLOv3 + CSP + CIoU + CA|?|?|?|
 |YOLOv3 + CSP + CIoU + CA + M|?|?|?|
