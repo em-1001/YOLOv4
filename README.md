@@ -247,6 +247,7 @@ CA 사용법 : https://wikidocs.net/180475
 yolov3 : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
 CSP : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
 CSP+CIoU : 3 -> 14 -> 29 -> 35.7 -> 38.7 -> 41.1 -> 45.7
+CSP+CIoU+CA : 9 -> 
 ```
 
 ### NMS(Non-maximum Suppression)
