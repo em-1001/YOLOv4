@@ -272,15 +272,13 @@ CSPResBlock구현 시 split하는 과정에서 똑같은 conv를 적용해주니
 |YOLOv3 + MSE DIoU-NMS|?|?|?|
 |YOLOv3 + CSP + CIoU + CA DIoU-NMS|?|?|?|
 
-config file에서 image size 바꿔가면서 실험 (320 x 320, 416 x 416, 512 x 512)  
-confidence 몇으로 할지 다시생각  
 https://csm-kr.tistory.com/62
 
 The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
 
 ### Pretrained Weights
 YOLOv3 + CSP : https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch   
-|YOLOv3 + CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-70epoch  
+YOLOv3 + CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-70epoch  
 
 # Reference
 ## Web Link 
