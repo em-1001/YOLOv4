@@ -1,7 +1,7 @@
 
 
 # YOLOv3
-## Bounding Box
+## Anchor box
 <p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/bbox.png"></p>
 
 
