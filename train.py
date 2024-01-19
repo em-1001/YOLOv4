@@ -62,12 +62,12 @@ def train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors, bo
 
 
 def func(epoch):
-    if epoch < 1:
-        return 0.0001
+    if epoch < 30:
+        return 1     # 0.0001
     elif epoch < 50:
-        return 0.00005
+        return 0.5   # 0.00005
     else:
-        return 0.00001 
+        return 0.2   # 0.00001
 
 
 def main():
