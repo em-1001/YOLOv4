@@ -3,8 +3,9 @@
 import config
 import torch
 import torch.optim as optim
+from torch.optim.lr_scheduler import CosineAnnealingLR
 
-# from yolov4 import YOLOv4
+from yolov4 import YOLOv4
 from tqdm import tqdm
 from utils import (
     mean_average_precision,
@@ -48,19 +49,36 @@ def train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors, bo
         optimizer.zero_grad()
         scaler.scale(loss).backward()
         scaler.step(optimizer)
+        # if True : #config.SCHEDULER == "CosineAnnealingLR":
+        #    scheduler.step()
+
         scaler.update()
+
+
 
         # update progress bar
         mean_loss = sum(losses) / len(losses)
         loop.set_postfix(loss=mean_loss)
 
 
+def func(epoch):
+    if epoch < 1:
+        return 0.0001
+    elif epoch < 50:
+        return 0.00005
+    else:
+        return 0.00001 
+
 
 def main():
     model = YOLOv4(num_classes=config.NUM_CLASSES).to(config.DEVICE)
     optimizer = optim.Adam(
-        model.parameters(), lr=config.LEARNING_RATE, weight_decay=config.WEIGHT_DECAY
+        model.parameters(), lr=0.0001, weight_decay=1e-4
     )
+    if True: #config.SCHEDULER == "CosineAnnealingLR":
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=80)
+    else:
+        scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=func)
     loss_fn = YoloLoss()
     scaler = torch.cuda.amp.GradScaler()
 
@@ -68,7 +86,7 @@ def main():
         train_csv_path=config.DATASET + "/train.csv", test_csv_path=config.DATASET + "/test.csv"
     )
 
-    if config.LOAD_MODEL: # config.LOAD_MODEL
+    if False: # config.LOAD_MODEL
         load_checkpoint(
             config.CHECKPOINT_FILE, model, optimizer, config.LEARNING_RATE
         )
@@ -79,9 +97,11 @@ def main():
     ).to(config.DEVICE)
 
     for epoch in range(100):
-        train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors, box_loss="MSE")
+        print(scheduler._last_lr)
+        train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors, box_loss="CIoU")
 
-        if config.SAVE_MODEL:
+        scheduler.step()
+        if True: # config.SAVE_MODEL
             save_checkpoint(model, optimizer, filename=f"/content/drive/MyDrive/yolov3/checkpoint.pth.tar")
 
         #print(f"Currently epoch {epoch}")
