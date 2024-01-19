@@ -164,35 +164,6 @@ $\eta_{\min}$ : min learning rate
 $\eta_{\max}$ : max learning rate    
 $T_{\max}$ : period
 
-
-https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html   
-code : https://github.com/pytorch/pytorch/blob/v1.1.0/torch/optim/lr_scheduler.py#L222
-
-```py
-import torch
-import torch.optim as optim
-
-class CosineAnnealingLRWithWarmup:
-    def __init__(self, optimizer, warmup_epochs, max_epochs, eta_min=0):
-        self.optimizer = optimizer
-        self.warmup_epochs = warmup_epochs
-        self.max_epochs = max_epochs
-        self.eta_min = eta_min
-        self.epoch = 0
-
-    def get_lr(self):
-        if self.epoch < self.warmup_epochs:
-            return self.epoch / self.warmup_epochs
-        else:
-            return self.eta_min + 0.5 * (1 + torch.cos((self.epoch - self.warmup_epochs) / (self.max_epochs - self.warmup_epochs) * math.pi))
-
-    def step(self):
-        self.epoch += 1
-        lr = self.get_lr()
-        for param_group in self.optimizer.param_groups:
-            param_group['lr'] = lr
-```
-
 # Performance
 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0_1.png">&#160;&#160;&#160;&#160;<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1_1.png">     
 
@@ -267,11 +238,37 @@ CSP + CIoU + CA : 2 -> 15
 
 https://csm-kr.tistory.com/62
 
-The model was evaluated with confidence 0.2 and IOU threshold 0.45 using NMS.
-
 ### Pretrained Weights
 YOLOv3 + CSP : https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch   
 YOLOv3 + CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-70epoch  
+
+https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html   
+code : https://github.com/pytorch/pytorch/blob/v1.1.0/torch/optim/lr_scheduler.py#L222
+
+```py
+import torch
+import torch.optim as optim
+
+class CosineAnnealingLRWithWarmup:
+    def __init__(self, optimizer, warmup_epochs, max_epochs, eta_min=0):
+        self.optimizer = optimizer
+        self.warmup_epochs = warmup_epochs
+        self.max_epochs = max_epochs
+        self.eta_min = eta_min
+        self.epoch = 0
+
+    def get_lr(self):
+        if self.epoch < self.warmup_epochs:
+            return self.epoch / self.warmup_epochs
+        else:
+            return self.eta_min + 0.5 * (1 + torch.cos((self.epoch - self.warmup_epochs) / (self.max_epochs - self.warmup_epochs) * math.pi))
+
+    def step(self):
+        self.epoch += 1
+        lr = self.get_lr()
+        for param_group in self.optimizer.param_groups:
+            param_group['lr'] = lr
+```
 
 # Reference
 ## Web Link 
