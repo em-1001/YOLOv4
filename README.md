@@ -258,7 +258,6 @@ CSP + CIoU + CA : 2 -> 15
 |YOLOv3 + CSP + CIoU|?|45.7|?|
 |YOLOv3 + CSP + CIoU + CA|?|?|?|
 |YOLOv3 + CSP + CIoU + CA + M|?|?|?|
-|YOLOv3 + CSP + CIoU + CA + M + IT|?|?|?|
 
 ### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
