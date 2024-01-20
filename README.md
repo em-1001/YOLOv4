@@ -238,37 +238,6 @@ CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 45.6 -> 4
 YOLOv3 + CSP : https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch   
 YOLOv3 + CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-70epoch  
 
-https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.CosineAnnealingLR.html   
-code : https://github.com/pytorch/pytorch/blob/v1.1.0/torch/optim/lr_scheduler.py#L222
-
-```py
-import torch
-import torch.optim as optim
-
-class CosineAnnealingLRWithWarmup:
-    def __init__(self, optimizer, warmup_epochs, max_epochs, eta_min=0):
-        self.optimizer = optimizer
-        self.warmup_epochs = warmup_epochs
-        self.max_epochs = max_epochs
-        self.eta_min = eta_min
-        self.epoch = 0
-
-    def get_lr(self):
-        if self.epoch < self.warmup_epochs:
-            return self.epoch / self.warmup_epochs
-        else:
-            return self.eta_min + 0.5 * (1 + torch.cos((self.epoch - self.warmup_epochs) / (self.max_epochs - self.warmup_epochs) * math.pi))
-
-    def step(self):
-        self.epoch += 1
-        lr = self.get_lr()
-        for param_group in self.optimizer.param_groups:
-            param_group['lr'] = lr
-```
-https://csm-kr.tistory.com/62  
-CA : https://github.com/csm-kr/YOLOv4_pytorch/blob/master/main.py    
-CA 사용법 : https://wikidocs.net/180475    
-
 # Reference
 ## Web Link 
 One-stage object detection : https://machinethink.net/blog/object-detection/   
