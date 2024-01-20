@@ -180,7 +180,7 @@ ANCHORS = [
 
 BATCH_SIZE = 32
 OPTIMIZER = Adam
-NUM_EPOCHS = 70
+NUM_EPOCHS = 100
 CONF_THRESHOLD = 0.05
 MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
@@ -192,7 +192,7 @@ LEARNING_RATE = 1e-5
 
 BATCH_SIZE = 32
 OPTIMIZER = Adam
-NUM_EPOCHS = 70
+NUM_EPOCHS = 100
 CONF_THRESHOLD = 0.05
 MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
@@ -201,7 +201,7 @@ WEIGHT_DECAY = 1e-4
 # 0 ~ 30 epoch                # Cosine Annealing                            
 
 LEARNING_RATE = 0.0001        LEARNING_RATE = 0.0001        
-                              T_max=80
+                              T_max=110
 # 30 ~ 50 epoch               
 
 LEARNING_RATE = 0.00005       
