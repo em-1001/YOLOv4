@@ -216,7 +216,7 @@ LEARNING_RATE = 0.00001
 yolov3          : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
 CSP             : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
 CSP + CIoU      : 3 -> 14 -> 29 -> 35 -> 38 -> 41.1 -> 45.7
-CSP + CIoU + CA : 2 -> 15
+CSP + CIoU + CA : 4 -> 
 ```
 
 ### NMS(Non-maximum Suppression)
