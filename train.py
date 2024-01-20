@@ -49,9 +49,6 @@ def train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors, bo
         optimizer.zero_grad()
         scaler.scale(loss).backward()
         scaler.step(optimizer)
-        # if True : #config.SCHEDULER == "CosineAnnealingLR":
-        #    scheduler.step()
-
         scaler.update()
 
 
