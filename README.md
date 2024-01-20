@@ -225,7 +225,7 @@ CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 45.6 -> 4
 |YOLOv3|?|31.7|?|
 |YOLOv3 + CSP|?|42.5|?|
 |YOLOv3 + CSP + CIoU|?|45.7|?|
-|YOLOv3 + CSP + CIoU + CA|?|?|?|
+|YOLOv3 + CSP + CIoU + CA|?|45.5|?|
 |YOLOv3 + CSP + CIoU + CA + M|?|?|?|
 
 ### DIoU-NMS
