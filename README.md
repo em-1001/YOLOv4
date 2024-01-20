@@ -167,7 +167,7 @@ $T_{\max}$ : period
 # Performance
 <img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0_1.png">&#160;&#160;&#160;&#160;<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1_1.png">     
 
-### configuration  
+### Configuration  
 ```ini
 DATASET = PASCAL_VOC
 ANCHORS = [
