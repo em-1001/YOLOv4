@@ -232,7 +232,7 @@ YOLOv3 + CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3 + MSE|?|?|?|
-|YOLOv3 + CSP + CIoU + CA|?|?|?|
+|YOLOv3 + CSP + CIoU + CA|?|45.6|?|
 
 ### Pretrained Weights
 YOLOv3 + CSP : https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch   
