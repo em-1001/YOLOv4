@@ -211,8 +211,6 @@ LEARNING_RATE = 0.00005
 LEARNING_RATE = 0.00001      
 
 ```
-CA : https://github.com/csm-kr/YOLOv4_pytorch/blob/master/main.py  
-CA 사용법 : https://wikidocs.net/180475  
 ```
 # mAP per 10 epochs
 yolov3          : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
@@ -235,8 +233,6 @@ CSP + CIoU + CA : 2 -> 15
 |--|--|--|--|
 |YOLOv3 + MSE DIoU-NMS|?|?|?|
 |YOLOv3 + CSP + CIoU + CA DIoU-NMS|?|?|?|
-
-https://csm-kr.tistory.com/62
 
 ### Pretrained Weights
 YOLOv3 + CSP : https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch   
@@ -269,6 +265,9 @@ class CosineAnnealingLRWithWarmup:
         for param_group in self.optimizer.param_groups:
             param_group['lr'] = lr
 ```
+https://csm-kr.tistory.com/62  
+CA : https://github.com/csm-kr/YOLOv4_pytorch/blob/master/main.py    
+CA 사용법 : https://wikidocs.net/180475    
 
 # Reference
 ## Web Link 
