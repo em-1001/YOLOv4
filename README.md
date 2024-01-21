@@ -224,7 +224,7 @@ YOLOv3 + CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 
 |--|--|--|--|
 |YOLOv3|?|31.7|?|
 |YOLOv3 + CSP|?|42.5|?|
-|YOLOv3 + CSP + CIoU|?|45.7|?|
+|YOLOv3 + CSP + CIoU|?|46.4|?|
 |YOLOv3 + CSP + CIoU + CA|?|45.5|?|
 |YOLOv3 + CSP + CIoU + CA + M|?|?|?|
 
@@ -232,6 +232,7 @@ YOLOv3 + CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |YOLOv3 + MSE|?|?|?|
+|YOLOv3 + CSP + CIoU|?|46.4|?|
 |YOLOv3 + CSP + CIoU + CA|?|45.6|?|
 
 ### Pretrained Weights
