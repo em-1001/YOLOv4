@@ -237,8 +237,8 @@ YOLOv3 + CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 
 
 ### Pretrained Weights
 YOLOv3 + CSP : https://www.kaggle.com/datasets/sj2129tommy/csp-70epoch   
-YOLOv3 + CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-70epoch  
-YOLOv3 + CSP + CIoU + CA : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-ca-100epoch
+YOLOv3 + CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch     
+YOLOv3 + CSP + CIoU + CA : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-ca-100epoch  
 
 # Reference
 ## Web Link 
