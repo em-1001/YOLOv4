@@ -87,8 +87,8 @@ X_U &= W_U^{ * }[X_0^{'}, X_T]\\
 $$
 \begin{aligned}
 W_k^{'} &= f(W_k, g_0^{''}, g_1, g_2, ..., g_{k-1})\\  
-W_T^{'} &= f(W_T, g_0^{''}, g_1, g_2, ..., g_{k})\\  
-W_U^{'} &= f(W_U, g_0^{'}, g_T)\\      
+W_T^{'} &= f(W_T, \color{blueviolet}g_0^{''}, g_1, g_2, ..., g_{k}\color{black})\\  
+W_U^{'} &= f(W_U, \color{blueviolet}g_0^{'}, g_T\color{black})\\      
 \end{aligned}$$
 
 이렇게 하므로써 CSPDenseNet은 DenseNet의 feature reuse 특성을 활용하면서, gradient flow를 truncate($X_0 \to X_0^{'}, X_0^{''}$)하여 과도한 양의 gradient information 복사를 방지할 수 있다. 
