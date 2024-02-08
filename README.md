@@ -176,20 +176,6 @@ ANCHORS = [
     [(0.02, 0.03), (0.04, 0.07), (0.08, 0.06)],
 ] 
 
-# YOLOv3  
-
-BATCH_SIZE = 32
-OPTIMIZER = Adam
-NUM_EPOCHS = 100
-CONF_THRESHOLD = 0.05
-MAP_IOU_THRESH = 0.5
-NMS_IOU_THRESH = 0.45
-WEIGHT_DECAY = 1e-4
-LEARNING_RATE = 1e-5
-
-
-# YOLOv4
-
 BATCH_SIZE = 32
 OPTIMIZER = Adam
 NUM_EPOCHS = 100
@@ -213,34 +199,32 @@ LEARNING_RATE = 0.00001
 ```
 ```
 # mAP per 10 epochs
-yolov3                   : 0 -> 5 -> 10 -> 15 -> 15 -> 18 ...
-YOLOv3 + CSP             : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
-YOLOv3 + CSP + CIoU      : 3 -> 14 -> 29 -> 35 -> 38 -> 41.1 -> 45.7 -> 45.3 -> 45.9 -> 46.4
-YOLOv3 + CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 45.6 -> 45.5
+```
+CSP             : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
+CSP + CIoU      : 3 -> 14 -> 29 -> 35 -> 38 -> 41.1 -> 45.7 -> 45.3 -> 45.9 -> 46.4
+CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 45.6 -> 45.5
 ```
 
 ### NMS(Non-maximum Suppression)
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|YOLOv3|?|31.7|?|
-|YOLOv3 + CSP|?|42.5|?|
-|YOLOv3 + CSP + GIoU|?|?|?|
-|YOLOv3 + CSP + CIoU|?|46.4|?|
-|YOLOv3 + CSP + CIoU + CA|?|45.5|?|
-|YOLOv3 + CSP + CIoU + CA + M|?|?|?|
+|CSP|?|42.5|?|
+|CSP + GIoU|?|?|?|
+|CSP + DIoU|?|?|?|
+|CSP + CIoU|?|46.4|?|
+|CSP + CIoU + CA|?|45.5|?|
+|CSP + CIoU + CA + M|?|?|?|
 
 ### DIoU-NMS
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|YOLOv3 + MSE|?|?|?|
-|YOLOv3 + CSP + CIoU|?|46.4|?|
-|YOLOv3 + CSP + CIoU + CA|?|45.6|?|
+|CSP + CIoU|?|46.4|?|
+|CSP + CIoU + CA|?|45.6|?|
 
 ### Pretrained Weights
-YOLOv3 :  
-YOLOv3 + CSP :   
-YOLOv3 + CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch     
-YOLOv3 + CSP + CIoU + CA : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-ca-100epoch  
+CSP :   
+CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch     
+CSP + CIoU + CA : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-ca-100epoch  
 
 # Reference
 ## Web Link 
