@@ -208,11 +208,11 @@ CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 45.6 -> 4
 ### NMS(Non-maximum Suppression)
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|CSP|?|42.5|?|
+|CSP|?|?|?|
 |CSP + GIoU|?|?|?|
 |CSP + DIoU|?|?|?|
 |CSP + CIoU|?|46.4|?|
-|CSP + CIoU + CA|?|45.5|?|
+|CSP + CIoU + CA|?|?|?|
 |CSP + CIoU + CA + M|?|?|?|
 
 ### DIoU-NMS
