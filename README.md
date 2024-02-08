@@ -196,8 +196,8 @@ LEARNING_RATE = 0.00005
 
 LEARNING_RATE = 0.00001      
 
-```
-```
+``````
+
 # mAP per 10 epochs
 ```
 CSP             : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
