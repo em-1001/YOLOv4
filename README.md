@@ -212,6 +212,7 @@ CSP + CIoU + CA :
 |CSP + GIoU|?|?|?|
 |CSP + DIoU|?|?|?|
 |CSP + CIoU|?|46.4|?|
+|CSP + SIoU|?|?|?|
 |CSP + CIoU + CA|?|?|?|
 |CSP + CIoU + CA + M|?|?|?|
 
