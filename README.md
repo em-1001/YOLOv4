@@ -154,7 +154,8 @@ Cosine Annealing : https://ai4nlp.tistory.com/16
 YOLOv2 : https://arxiv.org/pdf/1612.08242.pdf      
 YOLOv3 : https://arxiv.org/pdf/1804.02767.pdf  
 YOLOv4 : https://arxiv.org/pdf/2004.10934.pdf  
-DIoU, CIoU : https://arxiv.org/pdf/1911.08287.pdf    
+DIoU, CIoU : https://arxiv.org/pdf/1911.08287.pdf      
+SIoU : https://arxiv.org/ftp/arxiv/papers/2205/2205.12740.pdf  
 DenseNet : https://arxiv.org/pdf/1608.06993.pdf    
 CSPNet : https://arxiv.org/pdf/1911.11929.pdf    
 SPPNet : https://arxiv.org/pdf/1406.4729.pdf    
