@@ -200,9 +200,9 @@ LEARNING_RATE = 0.00001
 
 ```
 # mAP per 10 epochs
-CSP             : 3 -> 14 -> 28 -> 32 -> 36 -> 43.6 -> 42.5
+CSP             : 
 CSP + CIoU      : 3 -> 14 -> 29 -> 35 -> 38 -> 41.1 -> 45.7 -> 45.3 -> 45.9 -> 46.4
-CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 45.6 -> 45.5
+CSP + CIoU + CA : 
 ```
 
 ### NMS(Non-maximum Suppression)
@@ -219,7 +219,7 @@ CSP + CIoU + CA : 4 -> 18 -> 28 -> 35 -> 38 -> 43.4 -> 44.8 -> 45.9 -> 45.6 -> 4
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |CSP + CIoU|?|46.4|?|
-|CSP + CIoU + CA|?|45.6|?|
+|CSP + CIoU + CA|?|?|?|
 
 ### Pretrained Weights
 CSP :   
