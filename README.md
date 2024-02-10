@@ -106,8 +106,11 @@ LEARNING_RATE = 0.00001
 
 ```
 # mAP per 10 epochs
-CSP             : 
+CSP             :
+CSP + GIoU      :
+CSP + DIoU      :
 CSP + CIoU      : 3 -> 14 -> 29 -> 35 -> 38 -> 41.1 -> 45.7 -> 45.3 -> 45.9 -> 46.4
+CSP + SIoU      :
 CSP + CIoU + CA : 
 ```
 
