@@ -93,7 +93,7 @@ WEIGHT_DECAY = 1e-4
 # 0 ~ 30 epoch                # Cosine Annealing                            
 
 LEARNING_RATE = 0.0001        LEARNING_RATE = 0.0001        
-                              T_max=110
+                              T_max=100
 # 30 ~ 50 epoch               
 
 LEARNING_RATE = 0.00005       
