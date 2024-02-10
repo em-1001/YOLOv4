@@ -83,7 +83,6 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", io
         C = abs(C_w * C_h) + eps
         B = abs(w1 * h1)
         B_gt = abs(w2 * h2)
-
         R_giou = abs(C - (B + B_gt - intersection)) / abs(C)
 
         return torch.clamp(iou - R_giou, min=-1.0, max=1.0)
@@ -97,7 +96,6 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", io
         v = (4 / math.pi ** 2) * torch.pow(torch.atan(w2 / h2) - torch.atan(w1 / h1), 2)
         with torch.no_grad():
             alpha = v / ((1 - iou) + v + eps)
-
         R_ciou = p2 / c2 + v * alpha
 
         return torch.clamp(iou - R_ciou, min=-1.0, max=1.0)
