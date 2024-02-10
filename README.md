@@ -21,8 +21,6 @@ $$\mathcal{R}_{DIoU} = \frac{\rho^2(b, b^{gt})}{c^2}$$
 
 $\rho^2$는 Euclidean거리이며 $c$는 $B$와 $B^{gt}$를 포함하는 가장 작은 Box의 대각선 거리이다. 
 
-<p align="center"><img src="https://github.com/em-1001/YOLOv3/blob/master/image/diou.png" height="25%" width="25%"></p>
-
 DIoU Loss는 두 개의 box가 완벽히 일치하면 0, 매우 멀어지면 $L_{GIoU} = L_{DIoU} \to 2$가 된다. 이는 IoU가 0이 되고, penalty term이 1에 가깝게 되기 때문이다. Distance-IoU는 두 box의 중심 거리를 직접적으로 줄이기 때문에 GIoU에 비해 수렴이 빠르고, 거리기반이므로 수평, 수직방향에서 또한 수렴이 빠르다. 
 
 #### DIoU-NMS
@@ -60,8 +58,32 @@ $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
 ### SCYLLA-IoU(SIoU)
+SCYLLA-IoU(SIoU)는 **Angle cost**, **Distance cost**, **Shape cost**를 고려하며 penalty term은 다음과 같다.
 
-$\Lambda$
+$$\mathcal{R}_{SIoU} = \frac{\Delta + \Omega}{2}$$
+
+#### Angle cost
+Angle cost는 다음과 같이 계산된다. 
+
+$$\begin{align}
+\Lambda &= 1 - 2 \cdot \sin^2\left(\arcsin(x) - \frac{\pi}{4} \right) \\   
+&= 1 - 2 \cdot \sin^2\left(\arcsin(\sin(\alpha)) - \frac{\pi}{4} \right) \\
+&= 1 - 2 \cdot \sin^2\left(\alpha - \frac{\pi}{4} \right) \\
+&= \cos^2\left(\alpha - \frac{\pi}{4}\right) - \sin^2\left(\alpha - \frac{\pi}{4}\right) \\ 
+&= \cos\left(2\alpha - \frac{\pi}{2}\right) \\ 
+&= \sin(2\alpha) \\ 
+\end{align}$$
+
+$$\begin{align}
+&\\ 
+&where \\ 
+&\\  
+&x = \frac{c_h}{\sigma} = \sin(\alpha) \\  
+&\sigma = \sqrt{(b_{c_x}^{gt} - b_{c_x})^2 + (b_{c_y}^{gt} - b_{c_y})^2} \\  
+&c_h = \max(b_{c_y}^{gt}, b_{c_y}) - \min(b_{c_y}^{gt}, b_{c_y})
+\end{align}$$
+
+
 
 ## Cosine Annealing
 Cosine annealing은 학습율의 최대값과 최소값을 정해서 그 범위의 학습율을 코싸인 함수를 이용하여 스케쥴링하는 방법이다. Cosine anneaing의 이점은 최대값과 최소값 사이에서 코싸인 함수를 이용하여 급격히 증가시켰다가 급격히 감소시키 때문에 모델의 매니폴드(manifold) 공간의 안장(saddle point)를 빠르게 벗어날 수 있으며, 학습 중간에 생기는 정체 구간들 또한 빠르게 벗어날 수 있도록 한다.
