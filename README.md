@@ -38,8 +38,7 @@ $$
 
 
 ### Complete-IoU(CIoU)
-DIoU, CIoU를 제안한 논문에서 말하는 성공적인 Bounding Box Regression을 위한 3가지 조건은 overlap area, central point
-distance, aspect ratio이다. 이 중 overlap area, central point는 DIoU에서 이미 고려했고 여기에 aspect ratio를 고려한 penalty term을 추가한 것이 CIoU이다. CIoU penalty term는 다음과 같이 정의된다. 
+CIoU에서는 **overlap area**, **central point distance**, **aspect ratio**를 고려한다. 이 중 overlap area, central point는 DIoU에서 이미 다뤘고 여기에 aspect ratio에 대한 penalty term을 추가한 것이 CIoU이다. CIoU penalty term는 다음과 같이 정의된다. 
 
 $$\mathcal{R}_{CIoU} = \frac{\rho^2(b, b^{gt})}{c^2} + \alpha v$$
 
@@ -83,6 +82,21 @@ $$\begin{align}
 &c_h = \max(b_{c_y}^{gt}, b_{c_y}) - \min(b_{c_y}^{gt}, b_{c_y})
 \end{align}$$
 
+만약 $\alpha > \frac{\pi}{4}$라면 $\beta = \frac{\pi}{2} - \alpha$로 바꿔서 베타로 계산한다. 
+
+#### Distance cost 
+Distance cost에 Angle cost가 포함되며 다음과 같이 계산된다. 
+
+$$\begin{align}
+&\Delta = \sum_{t=x,y} (1 - e^{-\gamma \rho_t}) \\ 
+&\\ 
+&where \\ 
+&\\  
+&\rho_ x = \left(\frac{b_{c_x}^{gt} - b_{c_x}}{c_w} \right)^2, \ \rho_ y = \left(\frac{b_{c_y}^{gt} - b_{c_y}}{c_h} \right)^2, \ \gamma = 2 - \Lambda
+\end{align}$$
+
+여기서의 $c_w, c_h$는 Angle cost와는 달리 $B$와 $B^{gt}$를 포함하는 가장 작은 Box의 width와 height이다.   
+Distance cost를 보면 $\alpha \to 0$일 때 급격하게 작아지고, $\alpha \to \frac{\pi}{4}$일 때 커지기 때문에, $\gamma$가 이를 조정해주는 역할을 한다. 
 
 
 ## Cosine Annealing
