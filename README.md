@@ -109,7 +109,7 @@ $$\begin{align}
 &\omega_w = \frac{|w-w^{gt}|}{\max(w,w^{gt})}, \omega_h = \frac{|h-h^{gt}|}{\max(h,h^{gt})} \\   
 \end{align}$$
 
-$\theta$는 Shape cost에 얼마의 비중을 둘 지 정하며, 실험적으로 보통 4로 설정하며 2에서 6사이의 값으로 한다. 
+$\theta$는 Shape cost에 얼마의 비중을 둘 지 정하며, 보통 4로 설정하고 2에서 6사이의 값으로 한다. 
 
 최종적인 Loss는 다음과 같다. 
 
