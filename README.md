@@ -1,3 +1,73 @@
+# Performance
+<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0_1.png">&#160;&#160;&#160;&#160;<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1_1.png"> 
+
+### Configuration  
+```ini
+DATASET = PASCAL_VOC
+ANCHORS = [
+    [(0.28, 0.22), (0.38, 0.48), (0.9, 0.78)],
+    [(0.07, 0.15), (0.15, 0.11), (0.14, 0.29)],
+    [(0.02, 0.03), (0.04, 0.07), (0.08, 0.06)],
+] 
+
+BATCH_SIZE = 32
+OPTIMIZER = Adam
+NUM_EPOCHS = 100
+CONF_THRESHOLD = 0.05
+MAP_IOU_THRESH = 0.5
+NMS_IOU_THRESH = 0.45
+WEIGHT_DECAY = 1e-4
+
+# 0 ~ 30 epoch                # Cosine Annealing                            
+
+LEARNING_RATE = 0.0001        LEARNING_RATE = 0.0001        
+                              T_max=100
+# 30 ~ 50 epoch               
+
+LEARNING_RATE = 0.00005       
+
+# 50 ~  epoch                
+
+LEARNING_RATE = 0.00001      
+
+```
+
+```
+# mAP per 10 epochs
+CSP             : 2 -> 13 -> 25 -> 35 -> 39 -> 44.7 -> 43.1 -> 45.5 -> 46.6 -> 43.5
+CSP + GIoU      :
+CSP + DIoU      :
+CSP + CIoU      : 3 -> 14 -> 29 -> 35 -> 38 -> 41.1 -> 45.7 -> 45.3 -> 45.9 -> 46.4
+CSP + SIoU      :
+CSP + CIoU + CA : 
+```
+
+### NMS(Non-maximum Suppression)
+|Detection|320 x 320|416 x 416|512 x 512|
+|--|--|--|--|
+|CSP|?|43.5|?|
+|CSP + GIoU|?|?|?|
+|CSP + DIoU|?|?|?|
+|CSP + CIoU|?|46.4|?|
+|CSP + SIoU|?|?|?|
+|CSP + CIoU + CA|?|?|?|
+|CSP + CIoU + CA + M|?|?|?|
+
+### DIoU-NMS
+|Detection|320 x 320|416 x 416|512 x 512|
+|--|--|--|--|
+|CSP + CIoU|?|46.4|?|
+|CSP + CIoU + CA|?|?|?|
+
+### Pretrained Weights
+CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
+CSP + GIoU :  
+CSP + DIoU :  
+CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch        
+CSP + SIoU :  
+CSP + CIoU + CA :    
+
+
 # IoU Loss 
 일반적으로 IoU-based loss는 다음과 같이 표현된다. 
 
@@ -122,74 +192,7 @@ $\eta_{\min}$ : min learning rate
 $\eta_{\max}$ : max learning rate    
 $T_{\max}$ : period
 
-# Performance
-<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat0_1.png">&#160;&#160;&#160;&#160;<img src="https://github.com/em-1001/YOLOv3/blob/master/image/cat1_1.png"> 
 
-### Configuration  
-```ini
-DATASET = PASCAL_VOC
-ANCHORS = [
-    [(0.28, 0.22), (0.38, 0.48), (0.9, 0.78)],
-    [(0.07, 0.15), (0.15, 0.11), (0.14, 0.29)],
-    [(0.02, 0.03), (0.04, 0.07), (0.08, 0.06)],
-] 
-
-BATCH_SIZE = 32
-OPTIMIZER = Adam
-NUM_EPOCHS = 100
-CONF_THRESHOLD = 0.05
-MAP_IOU_THRESH = 0.5
-NMS_IOU_THRESH = 0.45
-WEIGHT_DECAY = 1e-4
-
-# 0 ~ 30 epoch                # Cosine Annealing                            
-
-LEARNING_RATE = 0.0001        LEARNING_RATE = 0.0001        
-                              T_max=100
-# 30 ~ 50 epoch               
-
-LEARNING_RATE = 0.00005       
-
-# 50 ~  epoch                
-
-LEARNING_RATE = 0.00001      
-
-```
-
-```
-# mAP per 10 epochs
-CSP             : 2 -> 13 -> 25 -> 35 -> 39 -> 44.7 -> 43.1 -> 45.5 -> 46.6 -> 43.5
-CSP + GIoU      :
-CSP + DIoU      :
-CSP + CIoU      : 3 -> 14 -> 29 -> 35 -> 38 -> 41.1 -> 45.7 -> 45.3 -> 45.9 -> 46.4
-CSP + SIoU      :
-CSP + CIoU + CA : 
-```
-
-### NMS(Non-maximum Suppression)
-|Detection|320 x 320|416 x 416|512 x 512|
-|--|--|--|--|
-|CSP|?|43.5|?|
-|CSP + GIoU|?|?|?|
-|CSP + DIoU|?|?|?|
-|CSP + CIoU|?|46.4|?|
-|CSP + SIoU|?|?|?|
-|CSP + CIoU + CA|?|?|?|
-|CSP + CIoU + CA + M|?|?|?|
-
-### DIoU-NMS
-|Detection|320 x 320|416 x 416|512 x 512|
-|--|--|--|--|
-|CSP + CIoU|?|46.4|?|
-|CSP + CIoU + CA|?|?|?|
-
-### Pretrained Weights
-CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
-CSP + GIoU :  
-CSP + DIoU :  
-CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch        
-CSP + SIoU :  
-CSP + CIoU + CA :    
 
 # Reference
 ## Web Link 
