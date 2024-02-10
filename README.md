@@ -171,7 +171,7 @@ CSP + CIoU + CA :
 ### NMS(Non-maximum Suppression)
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
-|CSP|?|?|?|
+|CSP|?|43.5|?|
 |CSP + GIoU|?|?|?|
 |CSP + DIoU|?|?|?|
 |CSP + CIoU|?|46.4|?|
@@ -186,9 +186,9 @@ CSP + CIoU + CA :
 |CSP + CIoU + CA|?|?|?|
 
 ### Pretrained Weights
-CSP :   
+CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs
 CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch     
-CSP + CIoU + CA : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-ca-100epoch  
+CSP + CIoU + CA :  
 
 # Reference
 ## Web Link 
