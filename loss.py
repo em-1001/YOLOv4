@@ -51,7 +51,7 @@ class YoloLoss(nn.Module):
             )  # width, height coordinates
             box_loss = self.mse(predictions[..., 1:5][obj], target[..., 1:5][obj])
 
-        elif box_loss == "IoU" or box_loss == "GIoU" or box_loss == "DIoU" or box_loss == "CIoU":
+        elif box_loss == "IoU" or box_loss == "GIoU" or box_loss == "DIoU" or box_loss == "CIoU" or box_loss == "SIoU":
             anchors = anchors.reshape(1, 3, 1, 1, 2) # 3(anchor) x 2(h, w), p_w * exp(t_w)를 연산하기 위해 reshape
             box_preds = torch.cat([self.sigmoid(predictions[..., 1:3]), torch.exp(predictions[..., 3:5]) * anchors], dim=-1)
             iou_loss = 1 - intersection_over_union(boxes_preds=box_preds[obj], boxes_labels=target[..., 1:5][obj], box_format="midpoint", iou_mode = box_loss)
