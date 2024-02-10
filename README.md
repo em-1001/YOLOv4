@@ -1,19 +1,18 @@
-## IoU Loss 
+# IoU Loss 
 일반적으로 IoU-based loss는 다음과 같이 표현된다. 
 
 $$L = 1 - IoU + \mathcal{R}(B, B^{gt})$$
 
 여기서 $R(B, B^{gt})$는  predicted box $B$와 target box $B^{gt}$에 대한 penalty term이다.  
 $1 - IoU$로만 Loss를 구할 경우 box가 겹치지 않는 case에 대해서 어느 정도의 오차로 교집합이 생기지 않은 것인지 알 수 없어서 gradient vanishing 문제가 발생했다. 이러한 문제를 해결하기 위해 penalty term을 추가한 것이다. 
-
-### Generalized-IoU(GIoU)
+## Generalized-IoU(GIoU)
 Generalized-IoU(GIoU) 의 경우 Loss는 다음과 같이 계산된다. 
 
 $$L_{GIoU} = 1 - IoU + \frac{|C - B ∪ B^{gt}|}{|C|}$$
 
 여기서 $C$는 $B$와 $B^{gt}$를 모두 포함하는 최소 크기의 Box를 의미한다. Generalized-IoU는 겹치지 않는 박스에 대한 gradient vanishing 문제는 개선했지만 horizontal과 vertical에 대해서 에러가 크다. 이는 target box와 수평, 수직선을 이루는 Anchor box에 대해서는 $|C - B ∪ B^{gt}|$가 매우 작거나 0에 가까워서 IoU와 비슷하게 동작하기 때문이다. 또한 겹치지 않는 box에 대해서 일단 predicted box의 크기를 매우 키우고 IoU를 늘리는 동작 특성 때문에 수렴 속도가 느리다. 
 
-### Distance-IoU(DIoU)
+## Distance-IoU(DIoU)
 GIoU가 면적 기반의 penalty term을 부여했다면, DIoU는 거리 기반의 penalty term을 부여한다. 
 DIoU의 penalty term은 다음과 같다. 
 
@@ -23,7 +22,7 @@ $\rho^2$는 Euclidean거리이며 $c$는 $B$와 $B^{gt}$를 포함하는 가장 
 
 DIoU Loss는 두 개의 box가 완벽히 일치하면 0, 매우 멀어지면 $L_{GIoU} = L_{DIoU} \to 2$가 된다. 이는 IoU가 0이 되고, penalty term이 1에 가깝게 되기 때문이다. Distance-IoU는 두 box의 중심 거리를 직접적으로 줄이기 때문에 GIoU에 비해 수렴이 빠르고, 거리기반이므로 수평, 수직방향에서 또한 수렴이 빠르다. 
 
-#### DIoU-NMS
+### DIoU-NMS
 DIoU를 NMS(Non-Maximum Suppression)에도 적용할 수 있다. 일반적인 NMS의 경우 이미지에서 같은 class인 두 물체가 겹쳐있는 Occlusion(가림)이 발생한 경우 올바른 박스가 삭제되는 문제가 발생하는데, DIoU를 접목할 경우 두 박스의 중심점 거리도 고려하기 때문에 target box끼리 겹쳐진 경우에도 robust하게 동작할 수 있다. 
 
 $$
@@ -37,7 +36,7 @@ $$
 가장 높은 Confidence score를 갖는 $\mathcal{M}$에 대해 IoU와 DIoU의 distance penalty를 동시에 고려하여 IoU가 매우 크더라도 중심점 사이의 거리가 멀면 다른 객체를 탐지한 것일 수도 있으므로 위와 같이 일정 임계치 $\epsilon$ 보다 작으면 없애지 않고 보존한다. 
 
 
-### Complete-IoU(CIoU)
+## Complete-IoU(CIoU)
 CIoU에서는 **overlap area**, **central point distance**, **aspect ratio**를 고려한다. 이 중 overlap area, central point는 DIoU에서 이미 다뤘고 여기에 aspect ratio에 대한 penalty term을 추가한 것이 CIoU이다. CIoU penalty term는 다음과 같이 정의된다. 
 
 $$\mathcal{R}_{CIoU} = \frac{\rho^2(b, b^{gt})}{c^2} + \alpha v$$
@@ -56,12 +55,12 @@ $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} 
 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
-### SCYLLA-IoU(SIoU)
+## SCYLLA-IoU(SIoU)
 SCYLLA-IoU(SIoU)는 **Angle cost**, **Distance cost**, **Shape cost**를 고려하며 penalty term은 다음과 같다.
 
 $$\mathcal{R}_{SIoU} = \frac{\Delta + \Omega}{2}$$
 
-#### Angle cost
+### Angle cost
 Angle cost는 다음과 같이 계산된다. 
 
 $$\begin{align}
@@ -84,7 +83,7 @@ $$\begin{align}
 
 만약 $\alpha > \frac{\pi}{4}$라면 $\beta = \frac{\pi}{2} - \alpha$로 바꿔서 베타로 계산한다. 
 
-#### Distance cost 
+### Distance cost 
 Distance cost에 Angle cost가 포함되며 다음과 같이 계산된다. 
 
 $$\begin{align}
@@ -98,7 +97,7 @@ $$\begin{align}
 여기서의 $c_w, c_h$는 Angle cost와는 달리 $B$와 $B^{gt}$를 포함하는 가장 작은 Box의 width와 height이다.   
 Distance cost를 보면 $\alpha \to 0$일 때 급격하게 작아지고, $\alpha \to \frac{\pi}{4}$일 때 커지기 때문에, $\gamma$가 이를 조정해주는 역할을 한다. 
 
-#### Shape cost
+### Shape cost
 Shape cost는 다음과 같이 계산된다. 
 
 $$\begin{align}
@@ -115,8 +114,7 @@ $\theta$는 Shape cost에 얼마의 비중을 둘 지 정하며, 보통 4로 설
 
 $$L_{SIoU} = 1 - IoU + \frac{\Delta + \Omega}{2}$$
 
-## Cosine Annealing
-Cosine annealing은 학습율의 최대값과 최소값을 정해서 그 범위의 학습율을 코싸인 함수를 이용하여 스케쥴링하는 방법이다. Cosine anneaing의 이점은 최대값과 최소값 사이에서 코싸인 함수를 이용하여 급격히 증가시켰다가 급격히 감소시키 때문에 모델의 매니폴드(manifold) 공간의 안장(saddle point)를 빠르게 벗어날 수 있으며, 학습 중간에 생기는 정체 구간들 또한 빠르게 벗어날 수 있도록 한다.
+# Cosine Annealing
 
 $$\eta_t = \eta_{\min} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 + \cos{\left(\frac{T_{cur}}{T_{\max}}\pi\right)} \right), \ T_{cur} \neq (2k+1)T_{\max}$$
 
