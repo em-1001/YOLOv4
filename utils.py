@@ -65,8 +65,12 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", io
     # convex diagonal squared
     c2 = C_w**2 + C_h**2 + eps
 
+    # x,y distance between the center points of the two boxes
+    C_x  = torch.abs(box2_x1 + box2_x2 - box1_x1 - box1_x2) * 0.5
+    C_y  = torch.abs(box2_y1 + box2_y2 - box1_y1 - box1_y2) * 0.5
+
     # center distance squared
-    p2 = ((box2_x1 + box2_x2 - box1_x1 - box1_x2)**2 + (box2_y1 + box2_y2 - box1_y1 - box1_y2)**2) / 4
+    p2 = ((C_x)**2 + (C_y)**2)
 
     # iou
     box1_area = abs(w1 * h1)
@@ -97,6 +101,23 @@ def intersection_over_union(boxes_preds, boxes_labels, box_format="midpoint", io
         R_ciou = p2 / c2 + v * alpha
 
         return torch.clamp(iou - R_ciou, min=-1.0, max=1.0)
+
+    elif iou_mode == "SIoU":
+        sigma = torch.pow(p2, 0.5) + eps
+        sin_alpha = C_y / sigma 
+        sin_beta = C_x / sigma 
+        sin_alpha = sin_beta if sin_alpha > pow(2, 0.5) / 2 else sin_alpha
+        Lambda = torch.sin(2 * torch.arcsin(sin_alpha))
+        gamma = 2 - Lambda
+        rho_x = (C_x / (C_w + eps))**2
+        rho_y = (C_y / (C_h + eps))**2
+        Delta = 2 - torch.exp(-1 * gamma * rho_x) - torch.exp(-1 * gamma * rho_y)
+        omega_w = torch.abs(w1 - w2) / torch.max(w1, w2)
+        omega_h = torch.abs(h1 - h2) / torch.max(h1, h2)
+        Omega = torch.pow(1 - torch.exp(-1 * omega_w), 4) + torch.pow(1 - torch.exp(-1 * omega_h), 4)
+        R_siou = (Delta + Omega) * 0.5
+
+        return iou - R_siou
 
     else:
         return iou
