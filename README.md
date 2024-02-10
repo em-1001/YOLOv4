@@ -98,6 +98,22 @@ $$\begin{align}
 여기서의 $c_w, c_h$는 Angle cost와는 달리 $B$와 $B^{gt}$를 포함하는 가장 작은 Box의 width와 height이다.   
 Distance cost를 보면 $\alpha \to 0$일 때 급격하게 작아지고, $\alpha \to \frac{\pi}{4}$일 때 커지기 때문에, $\gamma$가 이를 조정해주는 역할을 한다. 
 
+#### Shape cost
+Shape cost는 다음과 같이 계산된다. 
+
+$$\begin{align}
+&\Omega = \sum_{t=w,h} (1-e^{-\omega_t})^{\theta} \\ 
+&\\ 
+&where \\ 
+&\\  
+&\omega_w = \frac{|w-w^{gt}|}{\max(w,w^{gt})}, \omega_h = \frac{|h-h^{gt}|}{\max(h,h^{gt})} \\   
+\end{align}$$
+
+$\theta$는 Shape cost에 얼마의 비중을 둘 지 정하며, 실험적으로 보통 4로 설정하며 2에서 6사이의 값으로 한다. 
+
+최종적인 Loss는 다음과 같다. 
+
+$$L_{SIoU} = 1 - IoU + \frac{\Delta + \Omega}{2}$$
 
 ## Cosine Annealing
 Cosine annealing은 학습율의 최대값과 최소값을 정해서 그 범위의 학습율을 코싸인 함수를 이용하여 스케쥴링하는 방법이다. Cosine anneaing의 이점은 최대값과 최소값 사이에서 코싸인 함수를 이용하여 급격히 증가시켰다가 급격히 감소시키 때문에 모델의 매니폴드(manifold) 공간의 안장(saddle point)를 빠르게 벗어날 수 있으며, 학습 중간에 생기는 정체 구간들 또한 빠르게 벗어날 수 있도록 한다.
