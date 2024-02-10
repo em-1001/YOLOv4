@@ -57,15 +57,7 @@ CSP + CIoU + CA :
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
 |CSP + CIoU|?|46.4|?|
-|CSP + CIoU + CA|?|?|?|
-
-### Pretrained Weights
-CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
-CSP + GIoU :  
-CSP + DIoU :  
-CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch        
-CSP + SIoU :  
-CSP + CIoU + CA :    
+|CSP + CIoU + CA|?|?|?| 
 
 
 # IoU Loss 
@@ -192,7 +184,13 @@ $\eta_{\min}$ : min learning rate
 $\eta_{\max}$ : max learning rate    
 $T_{\max}$ : period
 
-
+# Pretrained Weights
+CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
+CSP + GIoU :  
+CSP + DIoU :  
+CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch        
+CSP + SIoU :  
+CSP + CIoU + CA :   
 
 # Reference
 ## Web Link 
