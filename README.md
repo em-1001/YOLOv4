@@ -1,4 +1,4 @@
-## IoU Loss
+## IoU Loss 
 일반적으로 IoU-based loss는 다음과 같이 표현된다. 
 
 $$L = 1 - IoU + \mathcal{R}(B, B^{gt})$$
@@ -60,6 +60,8 @@ $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
 ### SCYLLA-IoU(SIoU)
+
+$\Lambda$
 
 ## Cosine Annealing
 Cosine annealing은 학습율의 최대값과 최소값을 정해서 그 범위의 학습율을 코싸인 함수를 이용하여 스케쥴링하는 방법이다. Cosine anneaing의 이점은 최대값과 최소값 사이에서 코싸인 함수를 이용하여 급격히 증가시켰다가 급격히 감소시키 때문에 모델의 매니폴드(manifold) 공간의 안장(saddle point)를 빠르게 벗어날 수 있으며, 학습 중간에 생기는 정체 구간들 또한 빠르게 벗어날 수 있도록 한다.
