@@ -85,45 +85,41 @@ tensor([0.3333, 0.6857, 0.6250])
 ```
 
 ## IoU, GIoU, DIoU, CIoU Loss Example
-
 ```py
-import torch
-import math
-
 # Assuming your IoU function is defined here...
 
-# Example 1: IoU Calculation
 box_preds_iou = torch.tensor([[2.0, 2.0, 4.5, 7.0]])  # (x, y, width, height)
 box_labels_iou = torch.tensor([[3.0, 3.0, 4.0, 8.0]])  # (x, y, width, height)
 
-iou_result = IoU(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="IoU")
-print("IoU Loss:", 1- iou_result.item())
+# Example 1: IoU Calculation
+iou_result = intersection_over_union(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="IoU")
+print("IoU Loss :", 1- iou_result.item())
 
 # Example 2: GIoU Calculation
-
-giou_result = IoU(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="GIoU")
+giou_result = intersection_over_union(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="GIoU")
 print("GIoU Loss:", 1 - giou_result.item())
 
 # Example 3: DIoU Calculation
-
-
-diou_result = IoU(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="DIoU")
+diou_result = intersection_over_union(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="DIoU")
 print("DIoU Loss:", 1 - diou_result.item())
 
 # Example 4: CIoU Calculation
-
-
-ciou_result = IoU(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="CIoU")
+ciou_result = intersection_over_union(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="CIoU")
 print("CIoU Loss:", 1- ciou_result.item())
+
+# Example 4: SIoU Calculation
+siou_result = intersection_over_union(box_preds_iou, box_labels_iou, box_format="midpoint", iou_mode="SIoU")
+print("SIoU Loss:", 1- siou_result.item())
 ```
 
 ### result
 
 ```py
-IoU Loss: 0.501474916934967
+IoU Loss : 0.501474916934967
 GIoU Loss: 0.5518950819969177
 DIoU Loss: 0.5215124785900116
 CIoU Loss: 0.5215561389923096
+SIoU Loss: 0.5263195931911469
 ```
 
 ## cells_to_bboxes
