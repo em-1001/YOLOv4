@@ -184,9 +184,12 @@ CSP + CIoU + CA :
 |CSP + CIoU + CA|?|?|?|
 
 ### Pretrained Weights
-CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs
-CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch     
-CSP + CIoU + CA :  
+CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
+CSP + GIoU :  
+CSP + DIoU :  
+CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch        
+CSP + SIoU :  
+CSP + CIoU + CA :    
 
 # Reference
 ## Web Link 
