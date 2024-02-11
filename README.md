@@ -178,8 +178,8 @@ $T_{\max}$ : period
 CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
 CSP + GIoU :  
 CSP + DIoU :  
-CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch        
-CSP + SIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-siou100epoch
+CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch          
+CSP + SIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-siou100epoch  
 CSP + CIoU + CA :   
 
 # Reference
