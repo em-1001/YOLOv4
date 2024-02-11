@@ -39,7 +39,7 @@ LEARNING_RATE = 0.00001
 |CSP + GIoU|?|?|?|
 |CSP + DIoU|?|?|?|
 |CSP + CIoU|?|46.4|?|
-|CSP + SIoU|?|?|46.2|
+|CSP + SIoU|?|46.2|?|
 |CSP + CIoU + CA|?|?|?|
 |CSP + CIoU + CA + M|?|?|?|
 
