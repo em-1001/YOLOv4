@@ -32,16 +32,6 @@ LEARNING_RATE = 0.00001
 
 ```
 
-```
-# mAP per 10 epochs
-CSP             : 2 -> 13 -> 25 -> 35 -> 39 -> 44.7 -> 43.1 -> 45.5 -> 46.6 -> 43.5
-CSP + GIoU      :
-CSP + DIoU      :
-CSP + CIoU      : 3 -> 14 -> 26 -> 35 -> 38 -> 41.1 -> 45.7 -> 45.3 -> 45.9 -> 46.4
-CSP + SIoU      :
-CSP + CIoU + CA : 
-```
-
 ### NMS(Non-maximum Suppression)
 |Detection|320 x 320|416 x 416|512 x 512|
 |--|--|--|--|
