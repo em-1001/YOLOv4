@@ -39,7 +39,7 @@ LEARNING_RATE = 0.00001
 |CSP + GIoU|?|?|?|
 |CSP + DIoU|?|?|?|
 |CSP + CIoU|?|46.4|?|
-|CSP + SIoU|?|?|?|
+|CSP + SIoU|?|?|46.2|
 |CSP + CIoU + CA|?|?|?|
 |CSP + CIoU + CA + M|?|?|?|
 
@@ -179,7 +179,7 @@ CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs
 CSP + GIoU :  
 CSP + DIoU :  
 CSP + CIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-ciou-100epoch        
-CSP + SIoU :  
+CSP + SIoU : https://www.kaggle.com/datasets/sj2129tommy/csp-siou100epoch
 CSP + CIoU + CA :   
 
 # Reference
