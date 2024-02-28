@@ -51,31 +51,31 @@ LEARNING_RATE = 0.00001
 
 
 # IoU Loss 
-일반적으로 IoU-based loss는 다음과 같이 표현된다. 
+In general, IoU-based loss is expressed as follows.
 
 $$L = 1 - IoU + \mathcal{R}(B, B^{gt})$$
 
-여기서 $R(B, B^{gt})$는  predicted box $B$와 target box $B^{gt}$에 대한 penalty term이다.  
-$1 - IoU$로만 Loss를 구할 경우 box가 겹치지 않는 case에 대해서 어느 정도의 오차로 교집합이 생기지 않은 것인지 알 수 없어서 gradient vanishing 문제가 발생했다. 이러한 문제를 해결하기 위해 penalty term을 추가한 것이다. 
+where $R(B, B^{gt})$ is the penalty term for the predicted box $B$ and the target box $B^{gt}$.  
+If the loss is calculated only by $$1 - IoU$, it is not possible to know with what loss the intersection has not occurred for the case where the boxes do not overlap, which leads to the problem of gradient vanishing. We added the penalty term to solve this problem. 
 ## Generalized-IoU(GIoU)
-Generalized-IoU(GIoU) 의 경우 Loss는 다음과 같이 계산된다. 
+For Generalized-IoU (GIoU), the loss is calculated as follows
 
 $$\mathcal{R}_{GIoU} = \frac{|C - B ∪ B^{gt}|}{|C|}$$
 
-여기서 $C$는 $B$와 $B^{gt}$를 모두 포함하는 최소 크기의 Box를 의미한다. Generalized-IoU는 겹치지 않는 박스에 대한 gradient vanishing 문제는 개선했지만 horizontal과 vertical에 대해서 에러가 크다. 이는 target box와 수평, 수직선을 이루는 Anchor box에 대해서는 $|C - B ∪ B^{gt}|$가 매우 작거나 0에 가까워서 IoU와 비슷하게 동작하기 때문이다. 또한 겹치지 않는 box에 대해서 일단 predicted box의 크기를 매우 키우고 IoU를 늘리는 동작 특성 때문에 수렴 속도가 느리다. 
+where $C$ is the smallest box that contains both $B$ and $B^{gt}$. Generalized-IoU improves the gradient vanishing problem for non-overlapping boxes, but has large errors for horizontal and vertical. This is because $|C - B ∪ B^{gt}|$ is very small or close to zero for anchor boxes that form a horizontal and vertical line with the target box, so it behaves similarly to IoU. It also has a slow convergence rate due to the behavior of increasing the size of the predicted box very large in order to increase the IoU for non-overlapping boxes.
 
 ## Distance-IoU(DIoU)
-GIoU가 면적 기반의 penalty term을 부여했다면, DIoU는 거리 기반의 penalty term을 부여한다. 
-DIoU의 penalty term은 다음과 같다. 
+If the GIoU assigned an area-based penalty term, the DIoU assigns a distance-based penalty term. 
+The penalty terms for DIoU are as follows
 
 $$\mathcal{R}_{DIoU} = \frac{\rho^2(b, b^{gt})}{c^2}$$
 
-$\rho^2$는 Euclidean거리이며 $c$는 $B$와 $B^{gt}$를 포함하는 가장 작은 Box의 대각선 거리이다. 
+$\rho^2$ is the Euclidean distance and $c$ is the diagonal distance of the smallest Box containing $B$ and $B^{gt}$.
 
-DIoU Loss는 두 개의 box가 완벽히 일치하면 0, 매우 멀어지면 $L_{GIoU} = L_{DIoU} \to 2$가 된다. 이는 IoU가 0이 되고, penalty term이 1에 가깝게 되기 때문이다. Distance-IoU는 두 box의 중심 거리를 직접적으로 줄이기 때문에 GIoU에 비해 수렴이 빠르고, 거리기반이므로 수평, 수직방향에서 또한 수렴이 빠르다. 
+DIoU Loss is zero when the two boxes are perfectly aligned, and $L_{GIoU} = L_{DIoU} \to 2$ when they are very far apart. This is because the IoU goes to zero and the penalty term approaches 1. Distance-IoU converges faster than GIoU because it directly reduces the center distance of the two boxes, and because it is distance-based, it also converges faster in the horizontal and vertical directions.
 
 ### DIoU-NMS
-DIoU를 NMS(Non-Maximum Suppression)에도 적용할 수 있다. 일반적인 NMS의 경우 이미지에서 같은 class인 두 물체가 겹쳐있는 Occlusion(가림)이 발생한 경우 올바른 박스가 삭제되는 문제가 발생하는데, DIoU를 접목할 경우 두 박스의 중심점 거리도 고려하기 때문에 target box끼리 겹쳐진 경우에도 robust하게 동작할 수 있다. 
+DIoU can also be applied to Non-Maximum Suppression (NMS). With conventional NMS, the correct box is deleted in the case of occlusions where two objects of the same class in the image overlap, but with DIoU, the distance between the center points of the two boxes is also taken into account, so it can behave robustly even when the target boxes overlap.
 
 $$
 s_i =
@@ -85,11 +85,11 @@ s_ i, & IoU - \mathcal{R}_ {DIoU}(\mathcal{M}, B_i) < \epsilon\\
 \end{cases}
 $$
 
-가장 높은 Confidence score를 갖는 $\mathcal{M}$에 대해 IoU와 DIoU의 distance penalty를 동시에 고려하여 IoU가 매우 크더라도 중심점 사이의 거리가 멀면 다른 객체를 탐지한 것일 수도 있으므로 위와 같이 일정 임계치 $\epsilon$ 보다 작으면 없애지 않고 보존한다. 
+The DIoU NMS considers the distance penalty of IoU and DIoU simultaneously for the $\mathcal{M}$ with the highest confidence score, so even if the IoU is very large, if the distance between the center points is large, it may have detected another object, so it keeps it instead of discarding it if it is smaller than a certain threshold $\epsilon$ as above.
 
 
 ## Complete-IoU(CIoU)
-CIoU에서는 **overlap area**, **central point distance**, **aspect ratio**를 고려한다. 이 중 overlap area, central point는 DIoU에서 이미 다뤘고 여기에 aspect ratio에 대한 penalty term을 추가한 것이 CIoU이다. CIoU penalty term는 다음과 같이 정의된다. 
+CIoU considers **overlap area**, **central point distance**, and **aspect ratio**. Of these, overlap area and central point are already covered in DIoU, and CIoU adds a penalty term for aspect ratio. The CIoU penalty term is defined as follows.
 
 $$\mathcal{R}_{CIoU} = \frac{\rho^2(b, b^{gt})}{c^2} + \alpha v$$
 
@@ -97,23 +97,23 @@ $$v = \frac{4}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}})^2$$
 
 $$\alpha = \frac{v}{(1 - IoU) + v}$$
 
-$v$의 경우 bbox는 직사각형이고 $\arctan{\frac{w}{h}} = \theta$이므로 $\theta$의 차이를 통해 aspect ratio를 구하게 된다. 이때 $v$에 $\frac{2}{π}$가 곱해지는 이유는 $\arctan$ 함수의 최대치가 $\frac{2}{π}$ 이므로 scale을 조정해주기 위해서이다. 
+In the case of $v$, the bbox is a rectangle and $\arctan{\frac{w}{h}} = \theta$, so the aspect ratio is obtained through the difference between $\theta$. the reason $v$ is multiplied by $\frac{2}{π}$ is to adjust the scale because the maximum value of the $\arctan$ function is $\frac{2}{π}$.
 
-$\alpha$는 trade-off 파라미터로 IoU가 큰 box에 대해 더 큰 penalty를 주게 된다. 
+The $\alpha$ is a trade-off parameter, which penalizes larger boxes with larger IoUs.
 
-CIoU에 대해 최적화를 수행하면 아래와 같은 기울기를 얻게 된다. 이때, $w, h$는 모두 0과 1사이로 값이 작아 gradient explosion을 유발할 수 있다. 따라서 실제 구현 시에는 $\frac{1}{w^2 + h^2} = 1$로 설정한다. 
+When optimizing for CIoU, we get the following gradient. Here, $w, h$ are both small values between 0 and 1, which can cause a gradient explosion. Therefore, we set $\frac{1}{w^2 + h^2} = 1$ in the actual implementation.
 
 $$\frac{\partial v}{\partial w} = \frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{h}{w^2 + h^2}$$ 
 
 $$\frac{\partial v}{\partial h} = -\frac{8}{π^2}(\arctan{\frac{w^{gt}}{h^{gt}}} - \arctan{\frac{w}{h}}) \times \frac{w}{w^2 + h^2}$$ 
 
 ## SCYLLA-IoU(SIoU)
-SCYLLA-IoU(SIoU)는 **Angle cost**, **Distance cost**, **Shape cost**를 고려하며 penalty term은 다음과 같다.
+SCYLLA-IoU (SIoU) considers **Angle cost**, **Distance cost**, **Shape cost** and the penalty term is as follows.
 
 $$\mathcal{R}_{SIoU} = \frac{\Delta + \Omega}{2}$$
 
 ### Angle cost
-Angle cost는 다음과 같이 계산된다. 
+Angle cost is calculated as follows
 
 $$\begin{align}
 \Lambda &= 1 - 2 \cdot \sin^2\left(\arcsin(x) - \frac{\pi}{4} \right) \\   
@@ -133,10 +133,10 @@ $$\begin{align}
 &c_h = \max(b_{c_y}^{gt}, b_{c_y}) - \min(b_{c_y}^{gt}, b_{c_y})
 \end{align}$$
 
-만약 $\alpha > \frac{\pi}{4}$라면 $\beta = \frac{\pi}{2} - \alpha$로 바꿔서 베타로 계산한다. 
+If $\alpha > \frac{\pi}{4}$, then $\beta = \frac{\pi}{2} - \alpha$, which is calculated as beta.
 
 ### Distance cost 
-Distance cost에 Angle cost가 포함되며 다음과 같이 계산된다. 
+Distance cost includes Angle cost, which is calculated as follows
 
 $$\begin{align}
 &\Delta = \sum_{t=x,y} (1 - e^{-\gamma \rho_t}) \\ 
@@ -146,11 +146,11 @@ $$\begin{align}
 &\rho_ x = \left(\frac{b_{c_x}^{gt} - b_{c_x}}{c_w} \right)^2, \ \rho_ y = \left(\frac{b_{c_y}^{gt} - b_{c_y}}{c_h} \right)^2, \ \gamma = 2 - \Lambda
 \end{align}$$
 
-여기서의 $c_w, c_h$는 Angle cost와는 달리 $B$와 $B^{gt}$를 포함하는 가장 작은 Box의 width와 height이다.   
-Distance cost를 보면 $\alpha \to 0$일 때 급격하게 작아지고, $\alpha \to \frac{\pi}{4}$일 때 커지기 때문에, $\gamma$가 이를 조정해주는 역할을 한다. 
+Here, $c_w, c_h$ are the width and height of the smallest box containing $B$ and $B^{gt}$, unlike the Angle cost.   
+If we look at the Distance cost, we can see that it gets sharply smaller as $\alpha \to 0$ and larger as $\alpha \to \frac{\pi}{4}$, so $\gamma$ is there to adjust it.
 
 ### Shape cost
-Shape cost는 다음과 같이 계산된다. 
+Shape cost is calculated as follows
 
 $$\begin{align}
 &\Omega = \sum_{t=w,h} (1-e^{-\omega_t})^{\theta} \\ 
@@ -160,9 +160,9 @@ $$\begin{align}
 &\omega_w = \frac{|w-w^{gt}|}{\max(w,w^{gt})}, \omega_h = \frac{|h-h^{gt}|}{\max(h,h^{gt})} \\   
 \end{align}$$
 
-$\theta$는 Shape cost에 얼마의 비중을 둘 지 정하며, 보통 4로 설정하고 2에서 6사이의 값으로 한다. 
+The $\theta$ specifies how much weight to give to the Shape cost, usually set to 4 and can be a value between 2 and 6.
 
-최종적인 Loss는 다음과 같다. 
+The final loss is
 
 $$L_{SIoU} = 1 - IoU + \frac{\Delta + \Omega}{2}$$
 
