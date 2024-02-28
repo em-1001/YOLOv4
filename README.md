@@ -56,7 +56,7 @@ In general, IoU-based loss is expressed as follows.
 $$L = 1 - IoU + \mathcal{R}(B, B^{gt})$$
 
 where $R(B, B^{gt})$ is the penalty term for the predicted box $B$ and the target box $B^{gt}$.  
-If the loss is calculated only by $$1 - IoU$, it is not possible to know with what loss the intersection has not occurred for the case where the boxes do not overlap, which leads to the problem of gradient vanishing. We added the penalty term to solve this problem. 
+If the loss is calculated only by $1 - IoU$, it is not possible to know with what loss the intersection has not occurred for the case where the boxes do not overlap, which leads to the problem of gradient vanishing. We added the penalty term to solve this problem. 
 ## Generalized-IoU(GIoU)
 For Generalized-IoU (GIoU), the loss is calculated as follows
 
