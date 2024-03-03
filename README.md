@@ -49,6 +49,19 @@ LEARNING_RATE = 0.00001
 |CSP + CIoU|?|46.4|?|
 |CSP + CIoU + CA|?|?|?| 
 
+# Train
+```bash
+.
+├── config.py
+├── dataset.py
+├── Description.md
+├── loss.py
+├── README.md
+├── train.py
+├── utils.py
+└── yolov4.py
+```
+
 # Pretrained Weights
 CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
 CSP + GIoU :  
