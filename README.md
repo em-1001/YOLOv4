@@ -70,7 +70,11 @@ $ pip install -r requirements.txt
 
 2. **Create kaggle token**  
 Download the kaggle token and put it in the YOLOv4 file
-3. **Download dataset**  
+```json
+{"username":"?????","key":"????????????????????????"}
+```
+
+4. **Download dataset**  
 ```sh
 $ mkdir -p ~/.kaggle
 $ cp kaggle.json ~/.kaggle/
