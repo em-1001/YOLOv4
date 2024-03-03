@@ -62,6 +62,20 @@ LEARNING_RATE = 0.00001
     ├── utils.py
     └── yolov4.py
 ```
+1. **Create kaggle token**  
+Download the kaggle token and put it in the YOLOv4 file
+2. **Download dataset**  
+```sh
+$ mkdir -p ~/.kaggle
+$ cp kaggle.json ~/.kaggle/
+$ chmod 600 ~/.kaggle/kaggle.json
+$ kaggle datasets download -d aladdinpersson/pascal-voc-dataset-used-in-yolov3-video
+$ unzip  -qq /content/pascal-voc-dataset-used-in-yolov3-video.zip
+```
+3. **Set config.py values and Train**
+```sh
+$ python3 train.py
+```
 
 # Pretrained Weights
 CSP : https://www.kaggle.com/datasets/sj2129tommy/csp100epochs   
