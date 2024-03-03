@@ -57,14 +57,20 @@ LEARNING_RATE = 0.00001
     ├── dataset.py
     ├── Description.md
     ├── loss.py
+    ├── requirements.txt
     ├── README.md
     ├── train.py
     ├── utils.py
     └── yolov4.py
 ```
-1. **Create kaggle token**  
+1. **Install packages**
+```sh
+$ pip install -r requirements.txt
+```
+
+2. **Create kaggle token**  
 Download the kaggle token and put it in the YOLOv4 file
-2. **Download dataset**  
+3. **Download dataset**  
 ```sh
 $ mkdir -p ~/.kaggle
 $ cp kaggle.json ~/.kaggle/
@@ -72,7 +78,7 @@ $ chmod 600 ~/.kaggle/kaggle.json
 $ kaggle datasets download -d aladdinpersson/pascal-voc-dataset-used-in-yolov3-video
 $ unzip  -qq /content/pascal-voc-dataset-used-in-yolov3-video.zip
 ```
-3. **Set config.py values and Train**
+4. **Set config.py values and Train**
 ```sh
 $ python3 train.py
 ```
